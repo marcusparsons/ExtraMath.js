@@ -1,7 +1,7 @@
 # ExtraMath.js
 Normalizes access of experimental JavaScript Math methods across browsers, adds several new Math functions, and does not require any dependencies.
 
-ExtraMath.js introduces five new functions to the JavaScript Math prototype: **ftor**, **logb**, **mean**, **nthroot**, and **randomr**.  No static Math functions are overwritten by this library.
+ExtraMath.js introduces five new functions to the JavaScript Math prototype: **ftor**, **logb**, **mean**, **nthroot**, and **randomr**.  No static Math functions are overwritten by this library.  Each of the additional functions added to ExtraMath.js that can return a decimal number can have an additional `prec` argument added to them that sets the **maximum** number of decimal points to display when that function is evaluated.  *This only applies to all of those functions that are not in the current or future Math specifications of JavaScript*. 
 
 ###ftor
 **ftor** is short for **factorial** and will evaluate a given number to its factorial i.e.
@@ -14,7 +14,7 @@ console.log(Math.ftor(7)); //Evaluates to 5040, 7*6*5*4*3*2*1
 **logb** is a logarithm function that allows you to specify a base and number, instead of having to construct this logarithm yourself.
 ```javascript
 //Usage: Math.logb(base, number);
-console.log(Math.logb(8, 8)); //Usage: (base, arg, [prec]), Evalutes to 1
+console.log(Math.logb(8, 8));//Evalutes the base 8 logarithm of 8 which is 1
 ```
 
 ###mean
