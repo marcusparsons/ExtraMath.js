@@ -32,8 +32,8 @@ console.log(Math.mean(['5','1'])); //Evaluates to 3
 ###nthroot
 **nthroot** is a function that calculates the specified root of a given number.  
 ```javascript
-//Usage: Math.nthroot(root, number);
-console.log(Math.nthroot(3, 27)); //Returns the 3rd root of 27, which is 3
+//Usage: Math.nthroot(number, root);
+console.log(Math.nthroot(27, 3)); //Returns the 3rd root of 27, which is 3
 ```
 
 ###randomr
