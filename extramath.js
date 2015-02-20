@@ -1,7 +1,13 @@
 /**********************************************************************************************************
     Created by: Marcus Parsons
+    
+   Each function that returns a decimal value and is not a part of the future Math specifications 
+   (or is not implemented in the browser being used) has an extra optional argument called prec that is used
+   for determining rounding precision for decimal numbers that have many decimals.  
 
+    
     Big credit to the MDN for some of their polyfill functions! https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
+    
 **********************************************************************************************************/
 
 var defPrec = 12;
@@ -134,10 +140,14 @@ Math.atanh = Math.atanh || function (arg, prec) {
 Math.cbrt = Math.cbrt || function (arg, prec) {
     try {
         if (prec) {
-            return round(eval(Math.pow(arg, 1/3)), prec);
+            var y = Math.pow(Math.abs(arg), 1/3);
+            y = (arg < 0) ? -y : y;
+            return round(y, prec);
         }
         else {
-            return round(eval(Math.pow(arg, 1/3)), defPrec);
+            var y = Math.pow(Math.abs(arg), 1/3);
+            y = (arg < 0) ? -y : y;
+            return round(y, defPrec);
         }
     }
     catch (err) {
@@ -362,7 +372,7 @@ Math.mean = function () {
     try {
         if (typeof arguments[0] === "string" || typeof arguments[0] === "number") {
             for (var i in arguments) {
-                total += arguments[i];
+                total += parseInt(arguments[i], 10);
             }
             return round(total / arguments.length, defPrec);
         }
@@ -383,13 +393,24 @@ Math.mean = function () {
 
 //Calculate nth root of a given argument
 //Not part of the future Math spec
-Math.nthroot = function (root, arg, prec) {
+Math.nthroot = function (arg, root, prec) {
     try {
-        if (prec) {
-            return round(eval(Math.pow(arg, 1/root)), prec);
-        }
+        root = parseInt(root, 10);
+        if (root % 2 === 0 && arg < 0) {
+            alert("Even roots require a positive number!");
+            return 0;
+        } 
         else {
-            return round(eval(Math.pow(arg, 1/root)), defPrec);
+            if (prec) {
+                var y = Math.pow(Math.abs(arg), 1/root);
+                y = (arg < 0) ? -y : y;
+                return round(y, prec);
+            }
+            else {
+                var y = Math.pow(Math.abs(arg), 1/root);
+                y = (arg < 0) ? -y : y;
+                return round(y, defPrec);
+            }
         }
     }
     catch (err) {
@@ -400,7 +421,7 @@ Math.nthroot = function (root, arg, prec) {
 //randomrange returns a value that is in between a given range inclusive
 //In interval notation: [min, max]
 //Not part of the future Math spec
-Math.randomrange = function (min, max) {
+Math.randomr = function (min, max) {
     try {
         min = parseInt(min, 10);
         max = parseInt(max, 10);
