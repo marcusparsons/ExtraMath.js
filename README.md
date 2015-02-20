@@ -1,7 +1,7 @@
 # ExtraMath.js
 Normalizes access of experimental JavaScript Math methods across browsers, adds several new Math functions, and does not require any dependencies.
 
-ExtraMath.js introduces five new functions to the JavaScript Math prototype: **fact**, **logb**, **mean**, **nthroot**, and **randomr**.  No static Math functions are overwritten by this library.  Each of the additional functions added to ExtraMath.js that can return a decimal number can have an additional `prec` argument added to them that sets the **maximum** number of decimal points to display when that function is evaluated.  *This only applies to all of those functions that are not in the current or future Math specifications of JavaScript*. 
+ExtraMath.js introduces five new functions to the JavaScript Math prototype: **fact**, **logb**, **mean**, **nthroot**, and **randomr**.  All experimental Math methods are overwritten by this library.  Every function added to ExtraMath.js that can **return a decimal number** can have an additional `prec` argument added to them that sets the **maximum** number of decimal points to display when that function is evaluated.  If `prec` is not set, the variable `defPrec` is used instead, which is by default set to 12.
 
 You can check out the Mozilla Developer Network for all of the experimental Math functions that were added to ExtraMath.js.  All experimental functions will work on all browsers that at least support the current static Math functions.  Experimental functions are designated with a beaker next to their name.  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
 
