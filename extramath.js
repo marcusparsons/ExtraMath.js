@@ -229,7 +229,7 @@ Math.fround = Math.fround || function (arg) {
 
 //Returns the factorial for a given positive integer, including 0
 //Not part of the future Math spec
-Math.ftor = function (arg) {
+Math.fact = function (arg) {
     try {
         arg = parseInt(arg, 10);
         if (arg > 0) {
