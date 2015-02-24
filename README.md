@@ -412,8 +412,12 @@ OR: Math.volume('sphere', r);
 console.log(Math.volume('sph', 3)); //Evaluates to 113.09733...
 ```
 
+***
+
 ##License
 ExtraMath.js is licensed under the [GNU GPL v3 license](http://www.gnu.org/licenses/gpl.txt)
+
+***
 
 ##Copyright
 Copyright 2015, [Marcus Parsons](http://www.marcusparsons.com)
