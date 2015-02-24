@@ -1,7 +1,7 @@
 # ExtraMath.js
 Normalizes access of experimental JavaScript Math methods across browsers, adds several new Math functions, and does not require any dependencies.
 
-ExtraMath.js introduces 9 new functions to the JavaScript Math prototype: **area**, **fact**, **intdiv**, **logb**, **mean**, **nck**, **nroot**, **randomr**, and **tenx**.  All experimental Math methods are overwritten by this library.
+ExtraMath.js introduces 9 new functions to the JavaScript Math prototype: **area**, **fact**, **intdiv**, **logb**, **mean**, **nck**, **nroot**, **randomr**, and **tenx**.  All experimental Math methods are overwritten by this library, but no static Math methods are overwritten.
 
 There is a variable set in the beginning called `defPrec` which is used to set the maximum amount of decimal points for each answer that can return a decimal value i.e. if `decPrec = 12`, a fraction such as 1/3 would be deprecated to 0.333333333333 with 12 points of precision while a fraction such as 1/2 would still be only 0.5.  
 
