@@ -1,6 +1,7 @@
 # ExtraMath.js
 Normalizes access of experimental JavaScript Math methods across browsers, adds several new Math functions, and does not require any dependencies.
 
+##About ExtraMath.js
 ExtraMath.js introduces 9 new functions to the JavaScript Math prototype: **area**, **fact**, **intdiv**, **line**, **logb**, **mean**, **nck**, **nroot**, and **randomr**.  All experimental Math methods are overwritten by this library, but no static Math methods are overwritten.
 
 There is a variable set in the beginning called `defPrec` which is used to set the maximum amount of decimal points for each answer that can return a decimal value i.e. if `decPrec = 12`, a fraction such as 1/3 would be deprecated to 0.333333333333 with 12 points of precision while a fraction such as 1/2 would still be only 0.5.  
@@ -9,7 +10,18 @@ Each function has error handling built-in that calls the function `showError`.  
 
 You can check out the Mozilla Developer Network for all of the experimental Math functions that were added to ExtraMath.js.  All experimental functions will work on all browsers that at least support the current static Math functions.  Experimental functions are designated with a beaker next to their name.  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
 
-The following are the methods that are not a part of the future JavaScript Math specification (but maybe should be):
+##How To Use
+In order to use ExtraMath, all you need to do is call the "extramath.min.js" script (or "extramath.js") before you call the script for your program i.e.
+```html
+<script type="text/javascript" src="extramath.min.js"></script>
+<script type="text/javascript">
+//My code here
+</script>
+```
+
+##Extra Functions Added
+
+The following methods are the methods that are not a part of the future JavaScript Math specification (but maybe should be) that were added to **ExtraMath.js**:
 
 ##area
 **area** calculates the area of a number of 2D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape is either the full name of the shape or it can just be the first 3 letters.
@@ -27,6 +39,22 @@ console.log(Math.area('cir', 3)); //Evaluates to 28.27433..., which is 3^2 * PI.
 ```
 `console.log(Math.area('cir', 3, 'exact');` Evalutes to 9&pi;
 
+####cube (surface)
+Evaluates the entire surface area of a given cube
+```javascript
+//Usage: Math.area('cub', side); //where side is the measure of any side on the cube
+//OR: Math.area('cube', side);
+console.log(Math.area('cub', 3)); //Evaluates to 54, which is 6 * 3^2
+```
+
+####cylinder (surface)
+Evaluates the entire surface area of a given cylinder
+```javascript
+//Usage: Math.area('cyl', radius, height); //where radius is the radius of the cylinder and height is its vertical height
+//OR: Math.area('cylinder', radius, height);
+console.log(Math.area('cyl', 3, 4)); //Evaluates to 131.94689..., which is (2 * PI * 3) * (3 + 4)
+```
+
 ####ellipse
 ```javascript
 //Usage: Math.area('ell', a, b, ['exact'); where a is either minor/major axis and b is the other axis, interchangeable
@@ -36,6 +64,14 @@ console.log(Math.area('cir', 3)); //Evaluates to 28.27433..., which is 3^2 * PI.
 console.log(Math.area('ell', 3, 2)); //Evaluates to 18.84955..., which is 3 * 2 * PI.
 ```
 `console.log(Math.area('ell', 3, 2, 'exact');` Evalutes to 6&pi;
+
+####n-polygon
+Evaluates the area of any regular n-sided polygon (all sides are equal).
+```javascript
+//Usage: Math.area('npo', n, side); //where n is the number of sides and side is a measure of any side of the polygon
+//OR: Math.area('npolygon', n, side);
+console.log(area('npo', 50, 0.126)); //Evaluates to 3.15427..., which is the appx. area of a Pentacontagon (50-sided polygon)
+```
 
 ####parallelogram
 ```javascript
@@ -71,6 +107,14 @@ console.log(Math.area('seg', 3, Math.PI/3)); //Evaluates to 0.81527..., which is
 //Usage: Math.area('squ', a); //where a is the measure of any side of the square
 //OR: Math.area('square', a);
 console.log(Math.area('squ', 5)); //Evaluates to 25, which is 5 * 5.
+```
+
+####sphere (surface)
+Evaluates the surface area of a given sphere.
+```javascript
+//Usage: Math.area('sph', radius); //where radius is the radius of the sphere
+//OR: Math.area('sphere', radius);
+console.log(Math.area('sph', 4)); //Evaluates to 201.06192..., which is 4 * PI * 4^2
 ```
 
 ####trapezoid
