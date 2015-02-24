@@ -127,7 +127,7 @@ console.log(Math.mean(['5','1'])); //Evaluates to 3
 **nck** is short **n Choose k** which is used to evaluate the number of ways that *k* amount of grouped objects can be chosen from a number of *n* objects.  For more information, try visiting [this MathIsFun article about combinations and permutations.](http://www.mathsisfun.com/combinatorics/combinations-permutations.html)
 ```javascript
 //Usage: Math.nck(n, k); //where n is the number of objects and k is the amount of objects to group together
-Math.nck(6, 2); //Evalutes to 15, because there are 15 different ways you can group together 2 objects from a total of 6 objects
+console.log(Math.nck(6, 2)); //Evalutes to 15, because there are 15 different ways you can group together 2 objects from a total of 6 objects
 ```
 
 ##nroot
