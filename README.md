@@ -24,7 +24,7 @@ In order to use ExtraMath, all you need to do is call the "extramath.min.js" scr
 The following methods are the methods that are not a part of the future JavaScript Math specification (but maybe should be) that were added to **ExtraMath.js**:
 
 ##area
-**area** calculates the area of a number of 2D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  TThe name of the shape can be either the full name of the shape or just the first 3 letters.
+**area** calculates the area of a number of 2D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.
 ```javascript
 //Usage: Math.area(shape, [otherArgs);
 ```
@@ -35,7 +35,7 @@ The following methods are the methods that are not a part of the future JavaScri
 Usage: Math.area('cir', radius, ['exact');
 OR: Math.area('circle', radius, ['exact');
 'exact' is an optional argument that returns a string containing the exact value of the expression
-Using the 'exact' argument will NOT return a valid argument that can be used in expressions
+Note that using the 'exact' argument will NOT return a valid argument that can be used in further mathematical expressions.
 */
 console.log(Math.area('cir', 3)); //Evaluates to 28.27433...
 ```
@@ -411,3 +411,9 @@ OR: Math.volume('sphere', r);
 */
 console.log(Math.volume('sph', 3)); //Evaluates to 113.09733...
 ```
+
+##License
+ExtraMath.js is licensed under the [GNU GPL v3 license](http://www.gnu.org/licenses/gpl.txt)
+
+##Copyright
+Copyright 2015, [Marcus Parsons](http://www.marcusparsons.com)
