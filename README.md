@@ -106,6 +106,17 @@ console.log(Math.intdiv([10, 3, 2])); //Evalutes to 1, which is the integer port
 console.log(Math.intdiv(['10', '3', '2'])); //Evalutes to 1, which is the integer portion of 10 divided by 3 divided by 2
 ```
 
+##line
+**line** is a function that will return an object containing the slope, y-intercept, and equation of a set of 2 points.
+```javascript
+//Usage: Math.line(x1, y1, x2, y2); //the points can be numbers or strings
+//OR: Math.line(arrayVar);
+var myline = Math.line(['10', '2', '6', '4']);
+console.log(myline.slope); //Returns -0.5
+console.log(myline.yint); //Returns 7
+console.log(myline.equation); //Returns "y = -0.5x + 7"
+```
+
 ##logb
 **logb** is a logarithm function that allows you to specify a base and number, instead of having to construct this logarithm yourself.
 ```javascript
@@ -142,11 +153,4 @@ console.log(Math.nroot(27, 3)); //Returns the 3rd root of 27, which is 3
 ```javascript
 //Usage: Math.randomr(min, max);
 console.log(Math.randomr(50, 100)); //Returns a number between 50-100, inclusive
-```
-
-##tenx
-**tenx** is used a shorthand method for evaluating 10 to the power of a given x.
-```javascript
-//Usage: Math.tenx(number);
-console.log(Math.tenx(2)); //Evaluates to 100, which is 10^2
 ```
