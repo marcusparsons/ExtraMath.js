@@ -33,7 +33,7 @@ console.log(Math.area('cir', 3)); //Evaluates to 28.27433..., which is 3^2 * PI.
 //OR: Math.area('ellipse', a, b, ['exact');
 //'exact' is an optional argument that returns a string containing the exact value of the expression
 //Using the 'exact' argument will NOT return a number
-console.log(Math.area('ell', 3, 2)); //Evaluates to 18.84955, which is 3 * 2 * PI.
+console.log(Math.area('ell', 3, 2)); //Evaluates to 18.84955..., which is 3 * 2 * PI.
 ```
 `console.log(Math.area('ell', 3, 2, 'exact');` Evalutes to 6&pi;
 
