@@ -24,7 +24,7 @@ In order to use ExtraMath, all you need to do is call the "extramath.min.js" scr
 The following methods are the methods that are not a part of the future JavaScript Math specification (but maybe should be) that were added to **ExtraMath.js**:
 
 ##area
-**area** calculates the area of a number of 2D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.
+**area** calculates the area of a number of 2D/3D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.
 ```javascript
 //Usage: Math.area(shape, [otherArgs);
 ```
