@@ -254,7 +254,7 @@ console.log(Math.nroot(27, 3)); //Returns the 3rd root of 27, which is 3
 ***
 
 ##perimeter
-**perimeter** calculates the perimeter of a given shape.
+**perimeter** calculates the perimeter of a given shape.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.
 
 
 ####circle
