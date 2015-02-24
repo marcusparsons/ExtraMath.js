@@ -187,6 +187,8 @@ console.log(Math.area('tri', 5, 2)); //Evaluates to 5
 console.log(Math.fact(7)); //Evaluates to 5040, 7*6*5*4*3*2*1
 ```
 
+***
+
 ##intdiv
 **intdiv** is short for **Integer Division**.  This function will divide a series of numbers and return the integer portion of the quotient.  **intdiv** can take a virtually unlimited number of arguments.
 ```javascript
@@ -196,6 +198,8 @@ console.log(Math.intdiv(10, 3, 2)); //Evalutes to 1, which is the integer portio
 console.log(Math.intdiv([10, 3, 2])); //Evalutes to 1, which is the integer portion of 10 divided by 3 divided by 2
 console.log(Math.intdiv(['10', '3', '2'])); //Evalutes to 1, which is the integer portion of 10 divided by 3 divided by 2
 ```
+
+***
 
 ##line
 **line** is a function that will return an object containing the slope, y-intercept, and equation of a set of 2 points.
@@ -208,12 +212,16 @@ console.log(myline.yint); //Returns 7
 console.log(myline.equation); //Returns "y = -0.5x + 7"
 ```
 
+***
+
 ##logb
 **logb** is a logarithm function that allows you to specify a base and number, instead of having to construct this logarithm yourself.
 ```javascript
 //Usage: Math.logb(base, number);
 console.log(Math.logb(8, 8));//Evalutes the base 8 logarithm of 8 which is 1
 ```
+
+***
 
 ##mean
 **mean** is a function that calculates the average of a series of numbers. This function can take a virtually unlimited number of arguments.  Arguments can be passed in as comma separated strings or numbers or as an array. 
@@ -225,12 +233,16 @@ console.log(Math.mean([5,1])); //Evaluates to 3
 console.log(Math.mean(['5','1'])); //Evaluates to 3
 ```
 
+***
+
 ##nck
 **nck** is short **n Choose k** which is used to evaluate the number of ways that *k* amount of grouped objects can be chosen from a number of *n* objects.  For more information, try visiting [this MathIsFun article about combinations and permutations.](http://www.mathsisfun.com/combinatorics/combinations-permutations.html)
 ```javascript
 //Usage: Math.nck(n, k); where n is the number of objects and k is the amount of objects to group together
 console.log(Math.nck(6, 2)); //Evalutes to 15, because there are 15 different ways you can group together 2 objects from a total of 6 objects
 ```
+
+***
 
 ##nroot
 **nroot** is a function that calculates the specified root of a given number.  
