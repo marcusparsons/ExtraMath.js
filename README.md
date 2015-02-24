@@ -398,7 +398,7 @@ console.log(Math.volume('pyr', 3, 2, 4)); //Evaluates to 8
 ```javascript
 /*
 Usage: Math.volume('rec', l, w, h); l is length, w is width, and h is height
-OR: Math.volume('rectangle', l, w, h);
+OR: Math.volume('rectangularprism', l, w, h);
 */
 console.log(Math.volume('rec', 2, 5, 6)); //Evaluates to 60
 ```
