@@ -22,7 +22,7 @@ The following are the methods that are not a part of the future JavaScript Math 
 //Usage: Math.area('cir', radius, ['exact');
 //OR: Math.area('circle', radius, ['exact');
 //'exact' is an optional argument that returns a string containing the exact value of the expression
-//Using the 'exact' argument will NOT return a number
+//Using the 'exact' argument will NOT return a valid argument that can be used in expressions
 console.log(Math.area('cir', 3)); //Evaluates to 28.27433..., which is 3^2 * PI.
 ```
 `console.log(Math.area('cir', 3, 'exact');` Evalutes to 9&pi;
@@ -32,7 +32,7 @@ console.log(Math.area('cir', 3)); //Evaluates to 28.27433..., which is 3^2 * PI.
 //Usage: Math.area('ell', a, b, ['exact'); where a is either minor/major axis and b is the other axis, interchangeable
 //OR: Math.area('ellipse', a, b, ['exact');
 //'exact' is an optional argument that returns a string containing the exact value of the expression
-//Using the 'exact' argument will NOT return a number
+//Using the 'exact' argument will NOT return a valid argument that can be used in expressions
 console.log(Math.area('ell', 3, 2)); //Evaluates to 18.84955..., which is 3 * 2 * PI.
 ```
 `console.log(Math.area('ell', 3, 2, 'exact');` Evalutes to 6&pi;
