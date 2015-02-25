@@ -1,12 +1,13 @@
 /**********************************************************************************************************
-    Created by: Marcus Parsons
+    Created by: Marcus Parsons, Copyright 2015, http://www.marcusparsons.com
     
     ExtraMath is free for everyone to use, regardless of whether it is for personal or commercial use. 
-    I only ask that you give me credit because a lot of work went into this library.
+    I only ask that you give me credit because a lot of work has gone into this library. It is licensed under
+    the GNU GPL v3 license http://www.gnu.org/licenses/gpl.txt
     
-   Each function that returns a decimal value and is not a part of the future Math specifications 
-   (or is not implemented in the browser being used) has an extra optional argument called prec that is used
-   for determining rounding precision for decimal numbers that have many decimals.  
+    Each function that returns a decimal value and is not a part of the future Math specifications 
+    (or is not implemented in the browser being used) has an extra optional argument called prec that is used
+    for determining rounding precision for decimal numbers that have many decimals.  
 
     
     Big credit to the MDN for some of their polyfill functions! https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
