@@ -3,8 +3,14 @@
     
     ExtraMath is free for everyone to use, regardless of whether it is for personal or commercial use. 
     I only ask that you give me credit because a lot of work has gone into this library. It is licensed under
-    the GNU GPL v3 license http://www.gnu.org/licenses/gpl.txt
-
+    the GNU GPL v3 license. You may obtain a copy of this license at http://www.gnu.org/licenses/gpl.txt
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+        
     Big credit to the MDN for some of their polyfill functions! https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
     
 **********************************************************************************************************/
