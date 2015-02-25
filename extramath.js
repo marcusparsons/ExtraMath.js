@@ -96,12 +96,23 @@ Math.acosh = function (arg) {
 //Returns the area of a given 2D/3D shape.
 Math.area = function (shape) {
     try {
+        var args = [];
+        if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
+            for (var i in arguments) {
+               args[i] = arguments[i]; 
+            }
+        }
+        else {
+            for (var i = 0; i < arguments[1].length+1; i++) {
+                args[i] = arguments[1].shift();
+            }
+        }   
         switch (shape) {
             case "circle":
             case "cir":
                 try {
-                    var r = parseFloat(arguments[1]);
-                    if (arguments[2] === "exact") {
+                    var r = parseFloat(args[0]);
+                    if (args[1] === "exact") {
                         return round(eval(Math.pow(r, 2)), defPrec) + "&pi;";
                     }
                     else {
@@ -115,8 +126,8 @@ Math.area = function (shape) {
             case "cone":
             case "con":
                 try {
-                    var r = parseFloat(arguments[1]);
-                    var h = parseFloat(arguments[2]);
+                    var r = parseFloat(args[0]);
+                    var h = parseFloat(args[1]);
                     return round(eval((Math.PI * r) * (r + Math.sqrt(Math.pow(h, 2) + Math.pow(r, 2)))), defPrec);
                 }
                 catch (err) {
@@ -126,7 +137,7 @@ Math.area = function (shape) {
             case "cube":
             case "cub":
                 try {
-                    var side = parseFloat(arguments[1]);
+                    var side = parseFloat(args[0]);
                     return round(eval(6 * Math.pow(side, 2)), defPrec);
                 }
                 catch (err) {
@@ -136,8 +147,8 @@ Math.area = function (shape) {
             case "cylinder":
             case "cyl":
                 try {
-                    var r = parseFloat(arguments[1]);
-                    var h = parseFloat(arguments[2]);
+                    var r = parseFloat(args[0]);
+                    var h = parseFloat(args[1]);
                     return round(eval((2 * Math.PI * r) * (h + r)), defPrec);
                 }
                 catch (err) {
@@ -156,9 +167,9 @@ Math.area = function (shape) {
             case "ellipse":
             case "ell":
                 try {
-                    var a = parseFloat(arguments[1]);
-                    var b = parseFloat(arguments[2]);
-                    if (arguments[3] === "exact") {
+                    var a = parseFloat(args[0]);
+                    var b = parseFloat(args[1]);
+                    if (args[2] === "exact") {
                         return round(eval(a * b), defPrec) + "&pi;";
                     }
                     else {
@@ -172,8 +183,8 @@ Math.area = function (shape) {
             case "npolygon":
             case "npo":
                 try {
-                    var n = parseFloat(arguments[1]);
-                    var side = parseFloat(arguments[2]);
+                    var n = parseFloat(args[0]);
+                    var side = parseFloat(args[1]);
                     return round(eval(0.25 * n * Math.pow(side, 2) * (1/Math.tan(Math.PI/n))), defPrec);
                 }
                 catch (err) {
@@ -183,8 +194,8 @@ Math.area = function (shape) {
             case "parallelogram":
             case "par":
                 try {
-                    var a = parseFloat(arguments[1]);
-                    var b = parseFloat(arguments[2]);
+                    var a = parseFloat(args[0]);
+                    var b = parseFloat(args[1]);
                     return round(eval(a * b), defPrec);
                 }
                 catch (err) {
@@ -194,8 +205,8 @@ Math.area = function (shape) {
             case "rectangle":
             case "rec":
                 try {
-                    var a = parseFloat(arguments[1]);
-                    var b = parseFloat(arguments[2]);
+                    var a = parseFloat(args[0]);
+                    var b = parseFloat(args[1]);
                     return round(eval(a * b), defPrec);
                 }
                 catch (err) {
@@ -205,8 +216,8 @@ Math.area = function (shape) {
             case "sector":
             case "sec":
                 try {
-                    var r = parseFloat(arguments[1]);
-                    var angle = parseFloat(arguments[2]);
+                    var r = parseFloat(args[0]);
+                    var angle = parseFloat(args[1]);
                     return round(eval(0.5 * Math.pow(r, 2) * angle), defPrec);
                 }
                 catch (err) {
@@ -216,8 +227,8 @@ Math.area = function (shape) {
             case "segment":
             case "seg":
                 try {
-                    var r = parseFloat(arguments[1]);
-                    var angle = parseFloat(arguments[2]);
+                    var r = parseFloat(args[0]);
+                    var angle = parseFloat(args[1]);
                     return round(eval(0.5 * (angle - Math.sin(angle)) * Math.pow(r, 2)), defPrec);
                 }
                 catch (err) {
@@ -227,7 +238,7 @@ Math.area = function (shape) {
             case "square":
             case "squ":
                 try {
-                    var a = parseFloat(arguments[1]);
+                    var a = parseFloat(args[0]);
                     return round(eval(Math.pow(a, 2)), defPrec);
                 }
                 catch (err) {
@@ -237,7 +248,7 @@ Math.area = function (shape) {
             case "sphere":
             case "sph":
                 try {
-                    var r = parseFloat(arguments[1]);
+                    var r = parseFloat(args[0]);
                     return round(eval(4 * Math.PI * Math.pow(r, 2)), defPrec);
                 }
                 catch (err) {
@@ -247,8 +258,8 @@ Math.area = function (shape) {
             case "torus":
             case "tor":
                 try {
-                    var lilr = parseFloat(arguments[1]);
-                    var bigr = parseFloat(arguments[2]);
+                    var lilr = parseFloat(args[0]);
+                    var bigr = parseFloat(args[1]);
                     return round(eval(4 * Math.pow(Math.PI, 2) * lilr * bigr), defPrec);
                 }
                 catch (err) {
@@ -258,9 +269,9 @@ Math.area = function (shape) {
             case "trapezoid":
             case "tra":
                 try {
-                    var a = parseFloat(arguments[1]);
-                    var b = parseFloat(arguments[2]);
-                    var h = parseFloat(arguments[3]);
+                    var a = parseFloat(args[0]);
+                    var b = parseFloat(args[1]);
+                    var h = parseFloat(args[2]);
                     return round(eval((0.5 * (a + b)) * h), defPrec);
                 }
                 catch (err) {
@@ -270,8 +281,8 @@ Math.area = function (shape) {
             case "triangle":
             case "tri":
                 try {
-                    var b = parseFloat(arguments[1]);
-                    var h = parseFloat(arguments[2]);
+                    var b = parseFloat(args[0]);
+                    var h = parseFloat(args[1]);
                     return round(eval(0.5 * b * h), defPrec);
                 }
                 catch (err) {
@@ -662,11 +673,22 @@ Math.nroot = function (arg, root) {
 //Returns the perimeter of a given shape.
 Math.perimeter = function (shape) {
     try {
+        var args = [];
+        if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
+            for (var i in arguments) {
+               args[i] = arguments[i]; 
+            }
+        }
+        else {
+            for (var i = 0; i < arguments[1].length+1; i++) {
+                args[i] = arguments[1].shift();
+            }
+        }        
         switch (shape) {
             case "circle":
             case "cir":
                 try {
-                    var r = parseFloat(arguments[1]);
+                    var r = parseFloat(args[0]);
                     return round(eval(2 * Math.PI * r), defPrec);
                 }
                 catch (err) {
@@ -677,8 +699,8 @@ Math.perimeter = function (shape) {
             case "ell":
                 try {
                     //P = Math.PI * (a + b) * (1 + ((3 * h) / (10 + Math.sqrt(4 - 3 * h)))
-                    var a = parseFloat(arguments[1]);
-                    var b = parseFloat(arguments[2]);
+                    var a = parseFloat(args[0]);
+                    var b = parseFloat(args[1]);
                     var h = Math.pow((a - b), 2) / Math.pow((a + b), 2);
                     return round(eval(Math.PI * (a + b) * (1 + ((3 * h) / (10 + Math.sqrt(4 - 3 * h))))), defPrec);
                 }
@@ -689,9 +711,9 @@ Math.perimeter = function (shape) {
             case "quadrilateral":
             case "qua":
                 try {
-                    var a = parseFloat(arguments[1]);
-                    var b = parseFloat(arguments[2]);
-                    var c = parseFloat(arguments[3]);
+                    var a = parseFloat(args[0]);
+                    var b = parseFloat(args[1]);
+                    var c = parseFloat(args[2]);
                     var d = parseFloat(arguments[4]);
                     return round(eval(a + b + c + d), defPrec);
                 }
@@ -702,8 +724,8 @@ Math.perimeter = function (shape) {
             case "rectangle":
             case "rec":
                 try {
-                    var w = parseFloat(arguments[1]);
-                    var h = parseFloat(arguments[2]);   
+                    var w = parseFloat(args[0]);
+                    var h = parseFloat(args[1]);   
                     return round(eval(2 * (w + h)), defPrec);
                 }
                 catch (err) {
@@ -713,8 +735,8 @@ Math.perimeter = function (shape) {
             case "sector":
             case "sec":
                 try {
-                    var r = parseFloat(arguments[1]);
-                    var angle = parseFloat(arguments[2]);
+                    var r = parseFloat(args[0]);
+                    var angle = parseFloat(args[1]);
                     return round(eval(r * (angle + 2)), defPrec);
                 }
                 catch (err) {
@@ -724,7 +746,7 @@ Math.perimeter = function (shape) {
             case "square":
             case "squ":
                 try {
-                    var a = parseFloat(arguments[1]);                
+                    var a = parseFloat(args[0]);                
                     return round(eval(a * 4), defPrec);
                 }
                 catch (err) {
@@ -734,14 +756,17 @@ Math.perimeter = function (shape) {
             case "triangle":
             case "tri":
                 try {
-                    var a = parseFloat(arguments[1]);
-                    var b = parseFloat(arguments[2]);
-                    var c = parseFloat(arguments[3]);
+                    var a = parseFloat(args[0]);
+                    var b = parseFloat(args[1]);
+                    var c = parseFloat(args[2]);
                     return round(eval(a + b + c), defPrec);
                 }
                 catch (err) {
                     showError("Error: Unable to process expression due to " + err + ".");
                 }                  
+                break; 
+            default: 
+                showError("You must choose a shape in order to calculate its perimeter. You may enter the full name of the shape or the first three letters.");
                 break;                
         }
     }
@@ -838,16 +863,28 @@ Math.trunc = function (arg) {
     }
 }
 
+
 //Not part of the future Math spec
 //Returns the volume of a given 3D shape.
 Math.volume = function (shape) {
     try {
+        var args = [];
+        if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
+            for (var i in arguments) {
+               args[i] = arguments[i]; 
+            }
+        }
+        else {
+            for (var i = 0; i < arguments[1].length+1; i++) {
+                args[i] = arguments[1].shift();
+            }
+        }
         switch (shape) {
             case "cone":
             case "con":
                 try {
-                    var r = parseFloat(arguments[1]);
-                    var h = parseFloat(arguments[2]);
+                    var r = parseFloat(args[0]);
+                    var h = parseFloat(args[1]);
                     return round(eval((1/3) * Math.PI * Math.pow(r, 2) * h), defPrec)
                 }
                 catch (err) {
@@ -857,7 +894,7 @@ Math.volume = function (shape) {
             case "cube":
             case "cub":
                 try {
-                    var side = parseFloat(arguments[1]);
+                    var side = parseFloat(args[0]);
                     return round(eval(Math.pow(side, 3)), defPrec);
                 }
                 catch (err) {
@@ -867,8 +904,8 @@ Math.volume = function (shape) {
             case "cylinder":
             case "cyl":
                 try {
-                    var r = parseFloat(arguments[1]);
-                    var h = parseFloat(arguments[2]);
+                    var r = parseFloat(args[0]);
+                    var h = parseFloat(args[1]);
                     return round(eval(Math.PI * Math.pow(r, 2) * h), defPrec);
                 }
                 catch (err) {
@@ -878,9 +915,9 @@ Math.volume = function (shape) {
             case "ellipsoid":
             case "ell":
                 try {
-                    var r1 = parseFloat(arguments[1]);
-                    var r2 = parseFloat(arguments[2]);
-                    var r3 = parseFloat(arguments[3]);
+                    var r1 = parseFloat(args[0]);
+                    var r2 = parseFloat(args[1]);
+                    var r3 = parseFloat(args[2]);
                     return round(eval((4/3) * Math.PI * r1 * r2 * r3), defPrec);                
                 }
                 catch (err) {
@@ -890,8 +927,8 @@ Math.volume = function (shape) {
             case "irregularprism":
             case "irr":
                 try {
-                    var b = parseFloat(arguments[1]);
-                    var h = parseFloat(arguments[2]);
+                    var b = parseFloat(args[0]);
+                    var h = parseFloat(args[1]);
                     return round(eval(b * h), defPrec);
                 }
                 catch (err) {
@@ -901,9 +938,9 @@ Math.volume = function (shape) {
             case "pyramid":
             case "pyr":
                 try {
-                    var l = parseFloat(arguments[1]);
-                    var w = parseFloat(arguments[2]);
-                    var h = parseFloat(arguments[3]);
+                    var l = parseFloat(args[0]);
+                    var w = parseFloat(args[1]);
+                    var h = parseFloat(args[2]);
                     return round(eval((l * w * h)/3), defPrec);
                 }
                 catch (err) {
@@ -913,9 +950,9 @@ Math.volume = function (shape) {
             case "rectangularprism":
             case "rec":
                 try {
-                    var l = parseFloat(arguments[1]);
-                    var w = parseFloat(arguments[2]);
-                    var h = parseFloat(arguments[3]);
+                    var l = parseFloat(args[0]);
+                    var w = parseFloat(args[1]);
+                    var h = parseFloat(args[2]);
                     return round(eval(l * w * h), defPrec);                    
                 }
                 catch (err) {
@@ -925,13 +962,16 @@ Math.volume = function (shape) {
             case "sphere":
             case "sph":
                 try {
-                    var r = parseFloat(arguments[1]);
+                    var r = parseFloat(args[0]);
                     return round(eval((4/3) * Math.PI * Math.pow(r, 3)), defPrec);
                 }
                 catch (err) {
                     showError("Error: Unable to process expression due to " + err + ".");
                 }  
                 break;
+            default: 
+                showError("You must choose a shape in order to calculate its volume. You may enter the full name of the shape or the first three letters.");
+                break;                
         }
     }
     catch (err) {
