@@ -156,15 +156,6 @@ Math.area = function (shape) {
                     showError("Error: Unable to process expression due to " + err + ".");
                 }                    
                 break;
-            case "cylside":
-            case "cys":
-                try {
-                    
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                 
-                break;
             case "ellipse":
             case "ell":
                 try {
