@@ -6,8 +6,6 @@ ExtraMath.js introduces 11 new functions to the JavaScript Math prototype: **are
 
 There is a variable set in the beginning called `defPrec` which is used to set the maximum amount of decimal points for each answer that can return a decimal value i.e. if `decPrec = 12`, a fraction such as 1/3 would be deprecated to 0.333333333333 with 12 points of precision while a fraction such as 1/2 would still be only 0.5.  This `defPrec` variable is used in conjunction with the `round` function near the top of the page.  This `round` function is **not** to be confused with the `Math.round` function.  For more information about the round function, visit the [PHPJS.org link here.](http://phpjs.org/functions/round/)  
 
-Each function has error handling built-in that calls the function `showError`.  This way if you want to customize how errors are displayed, you only need to do so at one location, instead of having to search throughout the document to change each and every display function.
-
 You can check out the Mozilla Developer Network for all of the experimental Math functions that were added to ExtraMath.js.  All experimental functions will work on all browsers that at least support the current static Math functions.  Experimental functions are designated with a beaker next to their name.  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
 
 ##How To Use
@@ -19,12 +17,15 @@ In order to use ExtraMath, all you need to do is call the "extramath.min.js" scr
 </script>
 ```
 
+##Error Checking
+Each function has error handling built-in that calls the function `showError`.  This way if you want to customize how errors are displayed, you only need to do so at one location, instead of having to search throughout the document to change each and every display function.
+
 ##Extra Functions Added
 
 The following methods are the methods that are not a part of the future JavaScript Math specification (but maybe should be) that were added to **ExtraMath.js**:
 
 ##area
-**area** calculates the area of a number of 2D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.  The area function can accept strings, numbers, or arrays for its arguments except for the **shape** argument, which must be a string.
+**area** calculates the area of a number of 2D/3D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.  The area function can accept strings, numbers, or arrays for its arguments except for the **shape** argument, which must be a string.
 ```javascript
 //Usage: Math.area(shape, [otherArgs);
 ```
