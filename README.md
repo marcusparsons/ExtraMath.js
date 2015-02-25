@@ -24,7 +24,7 @@ In order to use ExtraMath, all you need to do is call the "extramath.min.js" scr
 The following methods are the methods that are not a part of the future JavaScript Math specification (but maybe should be) that were added to **ExtraMath.js**:
 
 ##area
-**area** calculates the area of a number of 2D/3D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.
+**area** calculates the area of a number of 2D shapes.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.  The area function can accept strings, numbers, or arrays for its arguments except for the **shape** argument, which must be a string.
 ```javascript
 //Usage: Math.area(shape, [otherArgs);
 ```
@@ -254,7 +254,7 @@ console.log(Math.nroot(27, 3)); //Returns the 3rd root of 27, which is 3
 ***
 
 ##perimeter
-**perimeter** calculates the perimeter of a given shape.  The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.
+**perimeter** calculates the perimeter of a given shape. The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.  The perimeter function can accept strings, numbers, or arrays for its arguments except for the **shape** argument, which must be a string.
 
 
 ####circle
@@ -334,7 +334,7 @@ console.log(Math.randomr(50, 100)); //Returns a number between 50-100, inclusive
 ***
 
 ##volume
-**volume** calculates the volume of a given 3D shape. The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.
+**volume** calculates the volume of a given 3D shape. The arguments required vary depending on the shape except for the first argument which is always a string containing the name of the shape.  The name of the shape can be either the full name of the shape or just the first 3 letters.  The volume function can accept strings, numbers, or arrays for its arguments except for the **shape** argument, which must be a string.
 ```javascript
 //Usage: Math.volume(shape, [otherArgs);
 ```
