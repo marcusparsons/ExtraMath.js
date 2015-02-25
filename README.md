@@ -1,5 +1,5 @@
 # ExtraMath.js
-Normalizes access of experimental JavaScript Math methods across browsers, adds several new Math functions, and does not require any dependencies.
+Normalizes access of experimental JavaScript Math methods across all browsers that support the current Math methods, adds several new Math functions, and does not require any dependencies.
 
 ##About ExtraMath.js
 ExtraMath.js introduces 11 new functions to the JavaScript Math prototype: **area**, **fact**, **intdiv**, **line**, **logb**, **mean**, **nck**, **nroot**, **perimeter**, **randomr**, and **volume**.  All experimental Math methods are overwritten by this library, but no static Math methods are overwritten.
