@@ -101,7 +101,8 @@ Math.area = function (shape) {
         var args = [];
         if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
             for (var i in arguments) {
-               args[i] = arguments[i]; 
+                if (i === 0) continue;
+               args[i-1] = arguments[i]; 
             }
         }
         else {
@@ -111,176 +112,101 @@ Math.area = function (shape) {
         }   
         switch (shape) {
             case "circle":
-            case "cir":
-                try {
-                    var r = parseFloat(args[0]);
-                    if (args[1] === "exact") {
-                        return round(eval(Math.pow(r, 2)), defPrec) + "&pi;";
-                    }
-                    else {
-                        return round(eval(Math.PI * Math.pow(r, 2)), defPrec);
-                    }
+            case "cir":       
+                var r = args[0];
+                if (args[1] === "exact") {
+                    return round(eval(Math.pow(r, 2)), defPrec) + "&pi;";
                 }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                   
+                else {
+                    return round(eval(Math.PI * Math.pow(r, 2)), defPrec);
+                }              
                 break; 
             case "cone":
             case "con":
-                try {
-                    var r = parseFloat(args[0]);
-                    var h = parseFloat(args[1]);
-                    return round(eval((Math.PI * r) * (r + Math.sqrt(Math.pow(h, 2) + Math.pow(r, 2)))), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                 
+                var r = args[0];
+                var h = args[1];
+                return round(eval((Math.PI * r) * (r + Math.sqrt(Math.pow(h, 2) + Math.pow(r, 2)))), defPrec);      
                 break;
             case "cube":
             case "cub":
-                try {
-                    var side = parseFloat(args[0]);
-                    return round(eval(6 * Math.pow(side, 2)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                 
+                var side = args[0];
+                return round(eval(6 * Math.pow(side, 2)), defPrec);              
                 break;
             case "cylinder":
             case "cyl":
-                try {
-                    var r = parseFloat(args[0]);
-                    var h = parseFloat(args[1]);
-                    return round(eval((2 * Math.PI * r) * (h + r)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                    
+                var r = args[0];
+                var h = args[1];
+                return round(eval((2 * Math.PI * r) * (h + r)), defPrec);                
                 break;
             case "ellipse":
-            case "ell":
-                try {
-                    var a = parseFloat(args[0]);
-                    var b = parseFloat(args[1]);
-                    if (args[2] === "exact") {
-                        return round(eval(a * b), defPrec) + "&pi;";
-                    }
-                    else {
-                        return round(eval(Math.PI * a * b), defPrec);
-                    }
+            case "ell":               
+                var a = args[0];
+                var b = args[1];
+                if (args[2] === "exact") {
+                    return round(eval(a * b), defPrec) + "&pi;";
                 }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                       
+                else {
+                    return round(eval(Math.PI * a * b), defPrec);
+                }                    
                 break;
             case "npolygon":
-            case "npo":
-                try {
-                    var n = parseFloat(args[0]);
-                    var side = parseFloat(args[1]);
-                    return round(eval(0.25 * n * Math.pow(side, 2) * (1/Math.tan(Math.PI/n))), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                       
+            case "npo":                
+                var n = args[0];
+                var side = args[1];
+                return round(eval(0.25 * n * Math.pow(side, 2) * (1/Math.tan(Math.PI/n))), defPrec);           
                 break;                
             case "parallelogram":
             case "par":
-                try {
-                    var a = parseFloat(args[0]);
-                    var b = parseFloat(args[1]);
-                    return round(eval(a * b), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }   
+                var a = args[0];
+                var b = args[1];
+                return round(eval(a * b), defPrec);
                 break; 
             case "rectangle":
             case "rec":
-                try {
-                    var a = parseFloat(args[0]);
-                    var b = parseFloat(args[1]);
-                    return round(eval(a * b), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                
+                var a = args[0];
+                var b = args[1];
+                return round(eval(a * b), defPrec);      
                 break;  
             case "sector":
-            case "sec":
-                try {
-                    var r = parseFloat(args[0]);
-                    var angle = parseFloat(args[1]);
-                    return round(eval(0.5 * Math.pow(r, 2) * angle), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                   
+            case "sec":                
+                var r = args[0];
+                var angle = args[1];
+                return round(eval(0.5 * Math.pow(r, 2) * angle), defPrec);              
                 break;
             case "segment":
             case "seg":
-                try {
-                    var r = parseFloat(args[0]);
-                    var angle = parseFloat(args[1]);
-                    return round(eval(0.5 * (angle - Math.sin(angle)) * Math.pow(r, 2)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                   
+                var r = args[0];
+                var angle = args[1];
+                return round(eval(0.5 * (angle - Math.sin(angle)) * Math.pow(r, 2)), defPrec);                
                 break;
             case "square":
             case "squ":
-                try {
-                    var a = parseFloat(args[0]);
-                    return round(eval(Math.pow(a, 2)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                   
+                var a = args[0];
+                return round(eval(Math.pow(a, 2)), defPrec);                  
                 break;
             case "sphere":
             case "sph":
-                try {
-                    var r = parseFloat(args[0]);
-                    return round(eval(4 * Math.PI * Math.pow(r, 2)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                 
+                var r = args[0];
+                return round(eval(4 * Math.PI * Math.pow(r, 2)), defPrec);               
                 break;
             case "torus":
             case "tor":
-                try {
-                    var lilr = parseFloat(args[0]);
-                    var bigr = parseFloat(args[1]);
-                    return round(eval(4 * Math.pow(Math.PI, 2) * lilr * bigr), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                 
+                var lilr = args[0];
+                var bigr = args[1];
+                return round(eval(4 * Math.pow(Math.PI, 2) * lilr * bigr), defPrec);               
                 break;
             case "trapezoid":
             case "tra":
-                try {
-                    var a = parseFloat(args[0]);
-                    var b = parseFloat(args[1]);
-                    var h = parseFloat(args[2]);
-                    return round(eval((0.5 * (a + b)) * h), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                
+                var a = args[0];
+                var b = args[1];
+                var h = args[2];
+                return round(eval((0.5 * (a + b)) * h), defPrec);             
                 break;                
             case "triangle":
             case "tri":
-                try {
-                    var b = parseFloat(args[0]);
-                    var h = parseFloat(args[1]);
-                    return round(eval(0.5 * b * h), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }
+                var b = args[0];
+                var h = args[1];
+                return round(eval(0.5 * b * h), defPrec);
                 break;
             default: 
                 showError("You must choose a shape in order to calculate its area. You may enter the full name of the shape or the first three letters.");
@@ -669,104 +595,70 @@ Math.perimeter = function (shape) {
         var args = [];
         if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
             for (var i in arguments) {
-               args[i] = arguments[i]; 
+                if (i === 0) continue;
+               args[i-1] = parseFloat(arguments[i]); 
             }
         }
         else {
             for (var i = 0; i < arguments[1].length+1; i++) {
-                args[i] = arguments[1].shift();
+                args[i] = parseFloat(arguments[1].shift());
             }
         }        
         switch (shape) {
             case "circle":
             case "cir":
-                try {
-                    var r = parseFloat(args[0]);
-                    return round(eval(2 * Math.PI * r), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }
+                var r = args[0];
+                return round(eval(2 * Math.PI * r), defPrec);
                 break;
             case "ellipse":
             case "ell":
-                try {
-                    //P = Math.PI * (a + b) * (1 + ((3 * h) / (10 + Math.sqrt(4 - 3 * h)))
-                    var a = parseFloat(args[0]);
-                    var b = parseFloat(args[1]);
-                    var h = Math.pow((a - b), 2) / Math.pow((a + b), 2);
-                    return round(eval(Math.PI * (a + b) * (1 + ((3 * h) / (10 + Math.sqrt(4 - 3 * h))))), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }  
+                var a = args[0];
+                var b = args[1];
+                var h = Math.pow((a - b), 2) / Math.pow((a + b), 2);
+                return round(eval(Math.PI * (a + b) * (1 + ((3 * h) / (10 + Math.sqrt(4 - 3 * h))))), defPrec);
                 break;
             case "quadrilateral":
             case "qua":
-                try {
-                    var a = parseFloat(args[0]);
-                    var b = parseFloat(args[1]);
-                    var c = parseFloat(args[2]);
-                    var d = parseFloat(arguments[4]);
-                    return round(eval(a + b + c + d), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                  
+                var a = args[0];
+                var b = args[1];
+                var c = args[2];
+                var d = args[3];
+                return round(eval(a + b + c + d), defPrec);              
                 break;
             case "rectangle":
             case "rec":
-                try {
-                    var w = parseFloat(args[0]);
-                    var h = parseFloat(args[1]);   
-                    return round(eval(2 * (w + h)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                  
+                var w = args[0];
+                var h = args[1];   
+                return round(eval(2 * (w + h)), defPrec);            
                 break;
             case "sector":
             case "sec":
-                try {
-                    var r = parseFloat(args[0]);
-                    var angle = parseFloat(args[1]);
-                    return round(eval(r * (angle + 2)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                  
+                var r = args[0];
+                var angle = args[1];
+                return round(eval(r * (angle + 2)), defPrec);             
                 break;
             case "square":
             case "squ":
-                try {
-                    var a = parseFloat(args[0]);                
-                    return round(eval(a * 4), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                  
+                var a = args[0];                
+                return round(eval(a * 4), defPrec);                 
                 break;     
             case "triangle":
             case "tri":
-                try {
-                    var a = parseFloat(args[0]);
-                    var b = parseFloat(args[1]);
-                    var c = parseFloat(args[2]);
-                    return round(eval(a + b + c), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                  
+                var a = args[0];
+                var b = args[1];
+                var c = args[2];
+                return round(eval(a + b + c), defPrec);                 
                 break; 
             default: 
                 showError("You must choose a shape in order to calculate its perimeter. You may enter the full name of the shape or the first three letters.");
-                break;                
+                break;
         }
     }
     catch (err) {
         showError("Error: Unable to process expression due to " + err + ".");
     } 
 }
+
 
 //randomrange returns a value that is in between a given range inclusive
 //In interval notation: [min, max]
@@ -864,103 +756,64 @@ Math.volume = function (shape) {
         var args = [];
         if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
             for (var i in arguments) {
-               args[i] = arguments[i]; 
+                if (i === 0) continue;
+               args[i-1] = parseFloat(arguments[i]); 
             }
         }
         else {
             for (var i = 0; i < arguments[1].length+1; i++) {
-                args[i] = arguments[1].shift();
+                args[i] = parseFloat(arguments[1].shift());
             }
         }
         switch (shape) {
             case "cone":
             case "con":
-                try {
-                    var r = parseFloat(args[0]);
-                    var h = parseFloat(args[1]);
-                    return round(eval((1/3) * Math.PI * Math.pow(r, 2) * h), defPrec)
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                
+                var r = args[0];
+                var h = args[1];
+                return round(eval((1/3) * Math.PI * Math.pow(r, 2) * h), defPrec);            
                 break;
             case "cube":
             case "cub":
-                try {
-                    var side = parseFloat(args[0]);
-                    return round(eval(Math.pow(side, 3)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }                  
+                var side = args[0];
+                return round(eval(Math.pow(side, 3)), defPrec);           
                 break;
             case "cylinder":
             case "cyl":
-                try {
-                    var r = parseFloat(args[0]);
-                    var h = parseFloat(args[1]);
-                    return round(eval(Math.PI * Math.pow(r, 2) * h), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }
+                var r = args[0];
+                var h = args[1];
+                return round(eval(Math.PI * Math.pow(r, 2) * h), defPrec);
                 break;
             case "ellipsoid":
             case "ell":
-                try {
-                    var r1 = parseFloat(args[0]);
-                    var r2 = parseFloat(args[1]);
-                    var r3 = parseFloat(args[2]);
-                    return round(eval((4/3) * Math.PI * r1 * r2 * r3), defPrec);                
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }  
+                var r1 = args[0];
+                var r2 = args[1];
+                var r3 = args[2];
+                return round(eval((4/3) * Math.PI * r1 * r2 * r3), defPrec);                
                 break;
             case "irregularprism":
             case "irr":
-                try {
-                    var b = parseFloat(args[0]);
-                    var h = parseFloat(args[1]);
-                    return round(eval(b * h), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }  
+                var b = args[0];
+                var h = args[1];
+                return round(eval(b * h), defPrec);
                 break;
             case "pyramid":
             case "pyr":
-                try {
-                    var l = parseFloat(args[0]);
-                    var w = parseFloat(args[1]);
-                    var h = parseFloat(args[2]);
-                    return round(eval((l * w * h)/3), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }  
+                var l = args[0];
+                var w = args[1];
+                var h = args[2];
+                return round(eval((l * w * h)/3), defPrec);
                 break;
             case "rectangularprism":
             case "rec":
-                try {
-                    var l = parseFloat(args[0]);
-                    var w = parseFloat(args[1]);
-                    var h = parseFloat(args[2]);
-                    return round(eval(l * w * h), defPrec);                    
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }  
+                var l = args[0];
+                var w = args[1];
+                var h = args[2];
+                return round(eval(l * w * h), defPrec);                     
                 break;
             case "sphere":
             case "sph":
-                try {
-                    var r = parseFloat(args[0]);
-                    return round(eval((4/3) * Math.PI * Math.pow(r, 3)), defPrec);
-                }
-                catch (err) {
-                    showError("Error: Unable to process expression due to " + err + ".");
-                }  
+                var r = args[0];
+                return round(eval((4/3) * Math.PI * Math.pow(r, 3)), defPrec); 
                 break;
             default: 
                 showError("You must choose a shape in order to calculate its volume. You may enter the full name of the shape or the first three letters.");
