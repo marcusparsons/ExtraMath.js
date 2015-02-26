@@ -191,7 +191,7 @@ console.log(Math.fact(7)); //Evaluates to 5040, 7*6*5*4*3*2*1
 ***
 
 ##intdiv
-**intdiv** is short for **Integer Division**.  This function will divide a series of numbers and return the integer portion of the quotient.  **intdiv** can take a virtually unlimited number of arguments.
+**intdiv** is short for **Integer Division**.  This function will divide a series of numbers and return the integer portion of the quotient.  This function can take a virtually unlimited number of arguments.  Arguments can be passed in as comma separated strings or numbers or as an array.
 ```javascript
 //Usage: Math.intdiv(n, n1, n2, ...);
 //OR: Math.intdiv(arrayVar);
