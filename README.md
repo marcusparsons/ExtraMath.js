@@ -416,7 +416,7 @@ console.log(Math.volume('sph', 3)); //Evaluates to 113.09733...
 ***
 
 ##License
-ExtraMath.js is licensed under the [GNU GPL v3 license](http://www.gnu.org/licenses/gpl.txt)
+ExtraMath.js is licensed under the [GNU GPL v3 license](http://www.gnu.org/licenses/gpl.txt) and is open and free to all. I only ask that you give me some credit; after all, I did put some work into this. :)
 
 ***
 
