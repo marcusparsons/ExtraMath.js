@@ -102,12 +102,12 @@ Math.area = function (shape) {
         if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
             for (var i in arguments) {
                 if (i === 0) continue;
-               args[i-1] = arguments[i]; 
+               args[i-1] = parseFloat(arguments[i]); 
             }
         }
         else {
             for (var i = 0; i < arguments[1].length+1; i++) {
-                args[i] = arguments[1].shift();
+                args[i] = parseFloat(arguments[1].shift());
             }
         }   
         switch (shape) {
