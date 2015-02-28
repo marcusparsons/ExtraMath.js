@@ -16,6 +16,7 @@
 **********************************************************************************************************/
 
 var defPrec = 16;
+var errorMsg = "Error: Unable to process expression due to ";
 
 function round (value, precision, mode) {
 //  discuss at: http://phpjs.org/functions/round/
@@ -90,7 +91,7 @@ Math.acosh = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
 
@@ -214,7 +215,7 @@ Math.area = function (shape) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
 
@@ -232,7 +233,7 @@ Math.asinh = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
 
@@ -251,7 +252,7 @@ Math.atanh = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
 
@@ -266,7 +267,7 @@ Math.cbrt = function (arg) {
         return round(y, defPrec);
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }  
 }
 
@@ -284,7 +285,7 @@ Math.clz32 = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }      
 }
 
@@ -298,7 +299,7 @@ Math.cosh = function (arg) {
         return round(eval((y + 1 / y) / 2), defPrec);
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }  
 }
 
@@ -311,7 +312,7 @@ Math.expm1 = function (arg) {
         return round(eval(Math.exp(arg) - 1), defPrec);    
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }      
 }
 
@@ -329,7 +330,7 @@ Math.fround = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     } 
 }
 
@@ -360,7 +361,7 @@ Math.fact = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }
 }
 
@@ -381,7 +382,7 @@ Math.hypot = function () {
         return round(Math.sqrt(y), defPrec);
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }     
 }
 
@@ -399,7 +400,7 @@ Math.imul = function (a, b) {
         return ((al * bl) + (((ah * bl + al * bh) << 16) >>> 0)|0);
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
 
@@ -424,7 +425,7 @@ Math.intdiv = function () {
         }        
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }      
 }
 
@@ -466,7 +467,7 @@ Math.line = function () {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }          
 }
 
@@ -479,7 +480,7 @@ Math.log10 = function (arg) {
         return round(eval(Math.log(arg)/Math.log(10)), defPrec);        
     } 
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }
 }
 
@@ -492,7 +493,7 @@ Math.log1p = function (arg) {
         return round(eval(Math.log(1 + arg)), defPrec);
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
 
@@ -505,7 +506,7 @@ Math.log2 = function (arg) {
         return round(eval(Math.log(arg)/Math.log(2)), defPrec);    
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }
 }
 
@@ -518,7 +519,7 @@ Math.logb = function (base, arg) {
         return round(eval(Math.log(arg)/Math.log(base)), defPrec);    
     } 
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }
 }
 
@@ -545,7 +546,7 @@ Math.mean = function () {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
 
@@ -563,7 +564,7 @@ Math.nck = function (n, k)  {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }     
 }
 
@@ -584,7 +585,7 @@ Math.nroot = function (arg, root) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }  
 }
 
@@ -655,7 +656,7 @@ Math.perimeter = function (shape) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     } 
 }
 
@@ -670,7 +671,7 @@ Math.randomr = function (min, max) {
         return eval(Math.floor(Math.random() * (max - min + 1)) + min);
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
 
@@ -690,7 +691,7 @@ Math.sign = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }
 }
 
@@ -703,7 +704,7 @@ Math.sinh = function (arg) {
         return round(eval((Math.exp(arg) - Math.exp((-arg))) / 2), defPrec);
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }
 }
 
@@ -725,7 +726,7 @@ Math.tanh = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }
 }
 
@@ -744,7 +745,7 @@ Math.trunc = function (arg) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }
 }
 
@@ -821,6 +822,6 @@ Math.volume = function (shape) {
         }
     }
     catch (err) {
-        showError("Error: Unable to process expression due to " + err + ".");
+        showError(errorMsg + err);
     }    
 }
