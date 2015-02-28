@@ -16,7 +16,6 @@
 **********************************************************************************************************/
 
 var defPrec = 16;
-var errorMsg = "Error: Unable to process expression due to ";
 
 function round (value, precision, mode) {
 //  discuss at: http://phpjs.org/functions/round/
@@ -72,6 +71,8 @@ return (isHalf ? value : Math.round(value)) / m;
 
 //Customize this function how you wish.
 //By default, it will show an alert box
+
+var errorMsg = "Error: Unable to process expression due to ";
 function showError (msg) {
     alert(msg);
 }
