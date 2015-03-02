@@ -513,7 +513,7 @@ Math.log2 = function (arg) {
 
 //Not part of the future Math spec
 //Returns the logarithm of a given number using a given base
-Math.logb = function (base, arg) {
+Math.logb = function (arg, base) {
     try {
         base = parseFloat(base);
         arg = parseFloat(arg);
