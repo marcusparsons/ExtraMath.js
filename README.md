@@ -191,7 +191,7 @@ console.log(Math.fact(7)); //Evaluates to 5040, 7*6*5*4*3*2*1
 ***
 
 ##intdiv
-**intdiv** is short for **Integer Division**.  This function will divide a series of numbers and return the integer portion of the quotient.  This function can take a virtually unlimited number of arguments.  Arguments can be passed in as comma separated strings or numbers or as an array.
+**intdiv** is short for **Integer Division**.  This function will divide a series of numbers and return the integer portion of the quotient.  **intdiv** can take a virtually unlimited number of arguments.
 ```javascript
 //Usage: Math.intdiv(n, n1, n2, ...);
 //OR: Math.intdiv(arrayVar);
@@ -218,7 +218,7 @@ console.log(myline.equation); //Returns "y = -0.5x + 7"
 ##logb
 **logb** is a logarithm function that allows you to specify a base and number, instead of having to construct this logarithm yourself.
 ```javascript
-//Usage: Math.logb(base, number);
+//Usage: Math.logb(number, base);
 console.log(Math.logb(8, 8));//Evalutes the base 8 logarithm of 8 which is 1
 ```
 
@@ -416,7 +416,7 @@ console.log(Math.volume('sph', 3)); //Evaluates to 113.09733...
 ***
 
 ##License
-ExtraMath.js is licensed under the [GNU GPL v3 license](http://www.gnu.org/licenses/gpl.txt) and is open and free to all. I only ask that you give me some credit; after all, I did put some work into this. :)
+ExtraMath.js is licensed under the [GNU GPL v3 license](http://www.gnu.org/licenses/gpl.txt)
 
 ***
 
