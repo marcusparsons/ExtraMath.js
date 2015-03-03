@@ -2,7 +2,7 @@
 Normalizes access of experimental JavaScript Math methods across all browsers that support the current Math methods, adds several new Math functions, and does not require any dependencies.
 
 ##About ExtraMath.js
-ExtraMath.js introduces 11 new functions to the JavaScript Math prototype: **area**, **fact**, **intdiv**, **line**, **logb**, **mean**, **nck**, **nroot**, **perimeter**, **randomr**, and **volume**.  All experimental Math methods are overwritten by this library, but no static Math methods are overwritten.
+ExtraMath.js introduces 14 new functions to the JavaScript Math prototype: **area**, **csc**, **cot** **fact**, **intdiv**, **line**, **logb**, **mean**, **nck**, **nroot**, **perimeter**, **randomr**, **sec**, and **volume**.  All experimental Math methods are overwritten by this library, but no static Math methods are overwritten.
 
 There is a variable set in the beginning called `defPrec` which is used to set the maximum amount of decimal points for each answer that can return a decimal value i.e. if `decPrec = 12`, a fraction such as 1/3 would be deprecated to 0.333333333333 with 12 points of precision while a fraction such as 1/2 would still be only 0.5.  This `defPrec` variable is used in conjunction with the `round` function near the top of the page.  This `round` function is **not** to be confused with the `Math.round` function.  For more information about the round function, visit the [PHPJS.org link here.](http://phpjs.org/functions/round/)  
 
