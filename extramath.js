@@ -304,6 +304,21 @@ Math.cosh = function (arg) {
     }  
 }
 
+
+//Not part of the future Math spec
+//Returns the cotangent of an angle given in radians
+Math.cot = function (angle) {
+    angle = parseFloat(angle);
+    return (1/Math.tan(angle));
+}
+
+//Not part of the future Math spec
+//Returns the cosecant of an angle given in radians
+Math.csc = function (angle) {
+    angle = parseFloat(angle);
+    return (1/Math.sin(angle));
+}
+
 //Math.expm1 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns e^x - 1, where x is argument and e is Euler's constant
@@ -707,6 +722,14 @@ Math.sinh = function (arg) {
     catch (err) {
         showError(errorMsg + err);
     }
+}
+
+
+//Not part of the future Math spec
+//Returns the secant of an angle given in radians.
+Math.sec = function (angle) {
+    angle = parseFloat(angle);
+    return (1/Math.cos(angle));
 }
 
 //Math.tanh is an experimental function that isn't available in all browsers yet
