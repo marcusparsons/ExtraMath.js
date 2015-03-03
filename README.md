@@ -181,6 +181,24 @@ console.log(Math.area('tri', 5, 2)); //Evaluates to 5
 
 ***
 
+##cot
+Returns the cotangent of an angle given in radians
+```javascript
+//Usage: Math.cot(angle);
+console.log(Math.cot(Math.PI/4)); //Evaluates to 1
+```
+
+***
+
+##csc
+Returns the cosecant of an angle given in radians
+```javascript
+//Usage: Math.csc(angle);
+console.log(Math.csc(Math.PI/2)); //Evaluates to 1
+```
+
+***
+
 ##fact
 **fact** is short for **factorial** and will evaluate a given number to its factorial i.e.
 ```javascript
@@ -330,6 +348,15 @@ console.log(Math.perimeter('tri', 3, 5, 6)); //Evaluates to 14
 ```javascript
 //Usage: Math.randomr(min, max);
 console.log(Math.randomr(50, 100)); //Returns a number between 50-100, inclusive
+```
+
+***
+
+##sec
+Returns the secant of an angle given in radians
+```javascript
+//Usage: Math.sec(angle);
+console.log(Math.sec(Math.PI)); //Evaluates to -1
 ```
 
 ***
