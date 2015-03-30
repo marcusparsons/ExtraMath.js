@@ -40,7 +40,7 @@ function round (value, precision, mode) {
 //   example 5: round(58551.799999999996, 2);
 //   returns 5: 58551.8
 
-var m, f, isHalf, sgn; // helper variables
+var m, f, isHalf, sgn; // helper variables 
 precision |= 0; // making sure precision is integer
 m = Math.pow(10, precision);
 value *= m;
