@@ -84,7 +84,7 @@ Math.acosh = Math.acosh || function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg < 1) {
-            showNotice("Error: acosh only accepts numbers greater than or equal to 1");
+            showError("Error: acosh only accepts numbers greater than or equal to 1");
             return 0;
         }
         else {
