@@ -430,7 +430,7 @@ Math.intdiv = function () {
                 total += parseFloat(arguments[i]).toString() + "/";
             }
             total = total.substr(0, total.length - 1);
-            return Math.floor(total);
+            return Math.floor(eval(total));
         }
         else {
             arguments[0] = arguments[0].toString();
