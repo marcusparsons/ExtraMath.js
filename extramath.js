@@ -40,7 +40,7 @@ function round (value, precision, mode) {
 //   example 5: round(58551.799999999996, 2);
 //   returns 5: 58551.8
 
-var m, f, isHalf, sgn; // helper variables 
+var m, f, isHalf, sgn; // helper variables
 precision |= 0; // making sure precision is integer
 m = Math.pow(10, precision);
 value *= m;
@@ -80,7 +80,7 @@ function showError (msg) {
 //Math.acosh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the inverse hyperbolic cosine of a given number
-Math.acosh = Math.acosh || function (arg) {
+Math.acosh = function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg < 1) {
@@ -88,7 +88,7 @@ Math.acosh = Math.acosh || function (arg) {
             return 0;
         }
         else {
-                return round(eval(Math.log(arg + Math.sqrt(arg * arg - 1))), defPrec);
+                return round(Math.log(arg + Math.sqrt(arg * arg - 1)), defPrec);
         }
     }
     catch (err) {
@@ -103,7 +103,7 @@ Math.area = function (shape) {
         var args = [];
         if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
             for (var i in arguments) {
-                if (i === 0) continue;
+                if (i === 0){ continue; }
                args[i-1] = parseFloat(arguments[i]); 
             }
         }
@@ -117,98 +117,98 @@ Math.area = function (shape) {
             case "cir":       
                 var r = args[0];
                 if (args[1] === "exact") {
-                    return round(eval(Math.pow(r, 2)), defPrec) + "&pi;";
+                    return round(Math.pow(r, 2), defPrec) + "&pi;";
                 }
                 else {
-                    return round(eval(Math.PI * Math.pow(r, 2)), defPrec);
+                    return round(Math.PI * Math.pow(r, 2), defPrec);
                 }              
                 break; 
             case "cone":
             case "con":
                 var r = args[0];
                 var h = args[1];
-                return round(eval((Math.PI * r) * (r + Math.sqrt(Math.pow(h, 2) + Math.pow(r, 2)))), defPrec);      
+                return round((Math.PI * r) * (r + Math.sqrt(Math.pow(h, 2) + Math.pow(r, 2))), defPrec);      
                 break;
             case "cube":
             case "cub":
                 var side = args[0];
-                return round(eval(6 * Math.pow(side, 2)), defPrec);              
+                return round(6 * Math.pow(side, 2), defPrec);              
                 break;
             case "cylinder":
             case "cyl":
                 var r = args[0];
                 var h = args[1];
-                return round(eval((2 * Math.PI * r) * (h + r)), defPrec);                
+                return round((2 * Math.PI * r) * (h + r), defPrec);                
                 break;
             case "ellipse":
             case "ell":               
                 var a = args[0];
                 var b = args[1];
                 if (args[2] === "exact") {
-                    return round(eval(a * b), defPrec) + "&pi;";
+                    return round((a * b), defPrec) + "&pi;";
                 }
                 else {
-                    return round(eval(Math.PI * a * b), defPrec);
+                    return round(Math.PI * a * b, defPrec);
                 }                    
                 break;
             case "npolygon":
             case "npo":                
                 var n = args[0];
                 var side = args[1];
-                return round(eval(0.25 * n * Math.pow(side, 2) * (1/Math.tan(Math.PI/n))), defPrec);           
+                return round(0.25 * n * Math.pow(side, 2) * (1/Math.tan(Math.PI/n)), defPrec);           
                 break;                
             case "parallelogram":
             case "par":
                 var a = args[0];
                 var b = args[1];
-                return round(eval(a * b), defPrec);
+                return round(a * b, defPrec);
                 break; 
             case "rectangle":
             case "rec":
                 var a = args[0];
                 var b = args[1];
-                return round(eval(a * b), defPrec);      
+                return round(a * b, defPrec);      
                 break;  
             case "sector":
             case "sec":                
                 var r = args[0];
                 var angle = args[1];
-                return round(eval(0.5 * Math.pow(r, 2) * angle), defPrec);              
+                return round(0.5 * Math.pow(r, 2) * angle, defPrec);              
                 break;
             case "segment":
             case "seg":
                 var r = args[0];
                 var angle = args[1];
-                return round(eval(0.5 * (angle - Math.sin(angle)) * Math.pow(r, 2)), defPrec);                
+                return round(0.5 * (angle - Math.sin(angle)) * Math.pow(r, 2), defPrec);                
                 break;
             case "square":
             case "squ":
                 var a = args[0];
-                return round(eval(Math.pow(a, 2)), defPrec);                  
+                return round(Math.pow(a, 2), defPrec);                  
                 break;
             case "sphere":
             case "sph":
                 var r = args[0];
-                return round(eval(4 * Math.PI * Math.pow(r, 2)), defPrec);               
+                return round(4 * Math.PI * Math.pow(r, 2), defPrec);               
                 break;
             case "torus":
             case "tor":
                 var lilr = args[0];
                 var bigr = args[1];
-                return round(eval(4 * Math.pow(Math.PI, 2) * lilr * bigr), defPrec);               
+                return round(4 * Math.pow(Math.PI, 2) * lilr * bigr, defPrec);               
                 break;
             case "trapezoid":
             case "tra":
                 var a = args[0];
                 var b = args[1];
                 var h = args[2];
-                return round(eval((0.5 * (a + b)) * h), defPrec);             
+                return round((0.5 * (a + b)) * h, defPrec);             
                 break;                
             case "triangle":
             case "tri":
                 var b = args[0];
                 var h = args[1];
-                return round(eval(0.5 * b * h), defPrec);
+                return round(0.5 * b * h, defPrec);
                 break;
             default: 
                 showError("You must choose a shape in order to calculate its area. You may enter the full name of the shape or the first three letters.");
@@ -223,14 +223,14 @@ Math.area = function (shape) {
 //Math.asinh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the inverse hyperbolic sine of a given number
-Math.asinh = Math.asinh || function (arg) {
+Math.asinh = function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg === -Infinity){
             return arg;
         }
         else {
-            return round(eval(Math.log(arg + Math.sqrt(arg * arg + 1))), defPrec);
+            return round(Math.log(arg + Math.sqrt(arg * arg + 1)), defPrec);
         }
     }
     catch (err) {
@@ -241,15 +241,15 @@ Math.asinh = Math.asinh || function (arg) {
 //Math.atanh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the inverse hyperbolic tangent of a given number
-Math.atanh = Math.atanh || function (arg) {
+Math.atanh = function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg < -1 || arg > 1){
-            showNotice("Error: atanh only accepts numbers between 1 and -1, exclusive.");
+            showError("Error: atanh only accepts numbers between 1 and -1, exclusive.");
             return 0;
         }
         else {
-            return round(eval(Math.log((1+arg)/(1-arg)) / 2), defPrec);
+            return round(Math.log((1+arg)/(1-arg)) / 2, defPrec);
         }
     }
     catch (err) {
@@ -260,7 +260,7 @@ Math.atanh = Math.atanh || function (arg) {
 //Math.cbrt is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the cube root of a given integer
-Math.cbrt = Math.cbrt || function (arg) {
+Math.cbrt = function (arg) {
     try {
         arg = parseFloat(arg);
         var y = Math.pow(Math.abs(arg), 1/3);
@@ -275,7 +275,7 @@ Math.cbrt = Math.cbrt || function (arg) {
 //Math.clz32 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the number of leading zeroes of a 32-bit integer.
-Math.clz32 = Math.clz32 || function (arg) {
+Math.clz32 = function (arg) {
     try {
         var value = Number(arg) >>> 0;
         if (value) {
@@ -293,11 +293,11 @@ Math.clz32 = Math.clz32 || function (arg) {
 //Math.cosh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the hyperbolic cosine of a number.
-Math.cosh = Math.cosh || function (arg) {
+Math.cosh = function (arg) {
     try {
         arg = parseFloat(arg);
         var y = Math.exp(arg);
-        return round(eval((y + 1 / y) / 2), defPrec);
+        return round((y + 1 / y) / 2, defPrec);
     }
     catch (err) {
         showError(errorMsg + err);
@@ -309,23 +309,23 @@ Math.cosh = Math.cosh || function (arg) {
 //Returns the cotangent of an angle given in radians
 Math.cot = function (angle) {
     angle = parseFloat(angle);
-    return (1/Math.tan(angle));
+    return round(1/Math.tan(angle), defPrec);
 }
 
 //Not part of the future Math spec
 //Returns the cosecant of an angle given in radians
 Math.csc = function (angle) {
     angle = parseFloat(angle);
-    return (1/Math.sin(angle));
+    return round(1/Math.sin(angle), defPrec);
 }
 
 //Math.expm1 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns e^x - 1, where x is argument and e is Euler's constant
-Math.expm1 = Math.expm1 || function (arg) {
+Math.expm1 = function (arg) {
     try {
         arg = parseFloat(arg);
-        return round(eval(Math.exp(arg) - 1), defPrec);    
+        return round(Math.exp(arg) - 1, defPrec);    
     }
     catch (err) {
         showError(errorMsg + err);
@@ -335,7 +335,7 @@ Math.expm1 = Math.expm1 || function (arg) {
 //Math.fround is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods that supports Float32Array prototype
 //Returns the nearest single precision float representation of a number.
-Math.fround = Math.fround || function (arg) {
+Math.fround = function (arg) {
     try {
         if (Float32Array) {
             return new Float32Array([arg])[0];
@@ -366,7 +366,7 @@ Math.fact = function (arg) {
                 args = args.replace(",","");
             } while (args.indexOf(",") > -1)
 
-            return round(eval(args), 64);
+            return round(args, 64);
         }
         else if (arg === 0) {
             return "1";
@@ -385,7 +385,7 @@ Math.fact = function (arg) {
 //Math.hypot is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the square root of the sum of squares of its arguments.
-Math.hypot = Math.hypot || function () {
+Math.hypot = function () {
     try {
         var y = 0;
         for (var i in arguments) {
@@ -405,7 +405,7 @@ Math.hypot = Math.hypot || function () {
 //Math.imul is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the result of a 32-bit integer multiplication.
-Math.imul = Math.imul || function (a, b) {
+Math.imul = function (a, b) {
     try {
         var ah = (a >>> 16) & 0xffff;
         var al = a & 0xffff;
@@ -430,7 +430,7 @@ Math.intdiv = function () {
                 total += parseFloat(arguments[i]).toString() + "/";
             }
             total = total.substr(0, total.length - 1);
-            return Math.floor(eval(total));
+            return Math.floor(total);
         }
         else {
             arguments[0] = arguments[0].toString();
@@ -490,10 +490,10 @@ Math.line = function () {
 //Math.log10 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the base 10 logarithm of a given number
-Math.log10 = Math.log10 || function (arg) {
+Math.log10 = function (arg) {
     try {
         arg = parseFloat(arg);
-        return round(eval(Math.log(arg)/Math.log(10)), defPrec);        
+        return round(Math.log(arg)/Math.log(10), defPrec);        
     } 
     catch (err) {
         showError(errorMsg + err);
@@ -503,10 +503,10 @@ Math.log10 = Math.log10 || function (arg) {
 //Math.log1p is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the natural logarithm (base e) of 1 + a number
-Math.log1p = Math.log1p || function (arg) {
+Math.log1p = function (arg) {
     try {
         arg = parseFloat(arg);
-        return round(eval(Math.log(1 + arg)), defPrec);
+        return round(Math.log(1 + arg), defPrec);
     }
     catch (err) {
         showError(errorMsg + err);
@@ -516,10 +516,10 @@ Math.log1p = Math.log1p || function (arg) {
 //Math.log2 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the logarithm base 2 of a number
-Math.log2 = Math.log2 || function (arg) {
+Math.log2 = function (arg) {
     try {
         arg = parseFloat(arg);
-        return round(eval(Math.log(arg)/Math.log(2)), defPrec);    
+        return round(Math.log(arg)/Math.log(2), defPrec);    
     }
     catch (err) {
         showError(errorMsg + err);
@@ -532,7 +532,7 @@ Math.logb = function (arg, base) {
     try {
         base = parseFloat(base);
         arg = parseFloat(arg);
-        return round(eval(Math.log(arg)/Math.log(base)), defPrec);    
+        return round(Math.log(arg)/Math.log(base), defPrec);    
     } 
     catch (err) {
         showError(errorMsg + err);
@@ -553,12 +553,11 @@ Math.mean = function () {
         }
         else {
             var len = arguments[0].length;
-            arguments[0] = arguments[0].toString();
-            do {
-                arguments[0] = arguments[0].replace(",","+");
-            } while (arguments[0].indexOf(",") > -1)
-                arguments[0] = eval(arguments[0]);
-                return round(eval(arguments[0] / len), defPrec);
+            var total = 0;
+            for (var i in arguments[0]) {
+                total += parseFloat(arguments[0][i]);
+            }
+            return round(total / len, defPrec);
         }
     }
     catch (err) {
@@ -573,7 +572,7 @@ Math.nck = function (n, k)  {
             n = parseInt(n, 10);
             k = parseInt(k, 10);
             if (n > 0 && k > 0) {
-            return round(eval(Math.fact(n)/(Math.fact(n-k) * Math.fact(k))), defPrec);
+            return round(Math.fact(n)/(Math.fact(n-k) * Math.fact(k)), defPrec);
         }
         else {
             showError("When using nck, n and k must both be greater than zero!");
@@ -612,7 +611,7 @@ Math.perimeter = function (shape) {
         var args = [];
         if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
             for (var i in arguments) {
-                if (i === 0) continue;
+                if (i === 0){ continue; }
                args[i-1] = parseFloat(arguments[i]); 
             }
         }
@@ -625,14 +624,14 @@ Math.perimeter = function (shape) {
             case "circle":
             case "cir":
                 var r = args[0];
-                return round(eval(2 * Math.PI * r), defPrec);
+                return round(2 * Math.PI * r, defPrec);
                 break;
             case "ellipse":
             case "ell":
                 var a = args[0];
                 var b = args[1];
                 var h = Math.pow((a - b), 2) / Math.pow((a + b), 2);
-                return round(eval(Math.PI * (a + b) * (1 + ((3 * h) / (10 + Math.sqrt(4 - 3 * h))))), defPrec);
+                return round(Math.PI * (a + b) * (1 + ((3 * h) / (10 + Math.sqrt(4 - 3 * h)))), defPrec);
                 break;
             case "quadrilateral":
             case "qua":
@@ -640,31 +639,31 @@ Math.perimeter = function (shape) {
                 var b = args[1];
                 var c = args[2];
                 var d = args[3];
-                return round(eval(a + b + c + d), defPrec);              
+                return round(a + b + c + d, defPrec);              
                 break;
             case "rectangle":
             case "rec":
                 var w = args[0];
                 var h = args[1];   
-                return round(eval(2 * (w + h)), defPrec);            
+                return round(2 * (w + h), defPrec);            
                 break;
             case "sector":
             case "sec":
                 var r = args[0];
                 var angle = args[1];
-                return round(eval(r * (angle + 2)), defPrec);             
+                return round(r * (angle + 2), defPrec);             
                 break;
             case "square":
             case "squ":
                 var a = args[0];                
-                return round(eval(a * 4), defPrec);                 
+                return round(a * 4, defPrec);                 
                 break;     
             case "triangle":
             case "tri":
                 var a = args[0];
                 var b = args[1];
                 var c = args[2];
-                return round(eval(a + b + c), defPrec);                 
+                return round(a + b + c, defPrec);                 
                 break; 
             default: 
                 showError("You must choose a shape in order to calculate its perimeter. You may enter the full name of the shape or the first three letters.");
@@ -684,7 +683,7 @@ Math.randomr = function (min, max) {
     try {
         min = parseInt(min, 10);
         max = parseInt(max, 10);
-        return eval(Math.floor(Math.random() * (max - min + 1)) + min);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     catch (err) {
         showError(errorMsg + err);
@@ -694,7 +693,7 @@ Math.randomr = function (min, max) {
 //Math.sign is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns 1 for a positive number, -1 for a negative number, and 0 for zero.
-Math.sign = Math.sign || function (arg) {
+Math.sign = function (arg) {
     try {
         if (arg > 0) {
             return 1;
@@ -714,10 +713,10 @@ Math.sign = Math.sign || function (arg) {
 //Math.sinh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the hyperbolic sine of a number.
-Math.sinh = Math.sinh || function (arg) {
+Math.sinh = function (arg) {
     try {
         arg = parseFloat(arg);
-        return round(eval((Math.exp(arg) - Math.exp((-arg))) / 2), defPrec);
+        return round((Math.exp(arg) - Math.exp((-arg))) / 2, defPrec);
     }
     catch (err) {
         showError(errorMsg + err);
@@ -729,7 +728,7 @@ Math.sinh = Math.sinh || function (arg) {
 //Returns the secant of an angle given in radians.
 Math.sec = function (angle) {
     angle = parseFloat(angle);
-    return (1/Math.cos(angle));
+    return round(1/Math.cos(angle), defPrec);
 }
 
 //Math.tanh is an experimental function that isn't available in all browsers yet
@@ -746,7 +745,7 @@ Math.tanh = function (arg) {
         } 
         else {
             arg = parseFloat(arg);
-            return round(eval((Math.exp(arg) - Math.exp(-arg)) / (Math.exp(arg) + Math.exp(-arg))), defPrec);   
+            return round((Math.exp(arg) - Math.exp(-arg)) / (Math.exp(arg) + Math.exp(-arg)), defPrec);   
         }
     }
     catch (err) {
@@ -758,7 +757,7 @@ Math.tanh = function (arg) {
 //Math.trunc is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the integral part of the number x, removing any fractional digits.
-Math.trunc = Math.trunc || function (arg) {
+Math.trunc = function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg < 0) {
@@ -781,7 +780,7 @@ Math.volume = function (shape) {
         var args = [];
         if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
             for (var i in arguments) {
-                if (i === 0) continue;
+                if (i === 0){ continue; }
                args[i-1] = parseFloat(arguments[i]); 
             }
         }
@@ -795,50 +794,50 @@ Math.volume = function (shape) {
             case "con":
                 var r = args[0];
                 var h = args[1];
-                return round(eval((1/3) * Math.PI * Math.pow(r, 2) * h), defPrec);            
+                return round((1/3) * Math.PI * Math.pow(r, 2) * h, defPrec);            
                 break;
             case "cube":
             case "cub":
                 var side = args[0];
-                return round(eval(Math.pow(side, 3)), defPrec);           
+                return round(Math.pow(side, 3), defPrec);           
                 break;
             case "cylinder":
             case "cyl":
                 var r = args[0];
                 var h = args[1];
-                return round(eval(Math.PI * Math.pow(r, 2) * h), defPrec);
+                return round(Math.PI * Math.pow(r, 2) * h, defPrec);
                 break;
             case "ellipsoid":
             case "ell":
                 var r1 = args[0];
                 var r2 = args[1];
                 var r3 = args[2];
-                return round(eval((4/3) * Math.PI * r1 * r2 * r3), defPrec);                
+                return round((4/3) * Math.PI * r1 * r2 * r3, defPrec);                
                 break;
             case "irregularprism":
             case "irr":
                 var b = args[0];
                 var h = args[1];
-                return round(eval(b * h), defPrec);
+                return round(b * h, defPrec);
                 break;
             case "pyramid":
             case "pyr":
                 var l = args[0];
                 var w = args[1];
                 var h = args[2];
-                return round(eval((l * w * h)/3), defPrec);
+                return round((l * w * h)/3, defPrec);
                 break;
             case "rectangularprism":
             case "rec":
                 var l = args[0];
                 var w = args[1];
                 var h = args[2];
-                return round(eval(l * w * h), defPrec);                     
+                return round(l * w * h, defPrec);                     
                 break;
             case "sphere":
             case "sph":
                 var r = args[0];
-                return round(eval((4/3) * Math.PI * Math.pow(r, 3)), defPrec); 
+                return round((4/3) * Math.PI * Math.pow(r, 3), defPrec); 
                 break;
             default: 
                 showError("You must choose a shape in order to calculate its volume. You may enter the full name of the shape or the first three letters.");
