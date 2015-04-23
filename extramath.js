@@ -424,21 +424,27 @@ Math.imul = function (a, b) {
 //Returns the leading integer portion of a division of a set of two or more numbers
 Math.intdiv = function () {
     try {
-        if (typeof arguments[0] === "string" || typeof arguments[0] === "number") {
-            var total = "";
-            for (var i in arguments) {
-                total += parseFloat(arguments[i]).toString() + "/";
+        if ((typeof arguments[0] === "string" || typeof arguments[0] === "number") && (arguments[0] !== NaN)) {
+            var total = parseFloat(arguments[0]);
+            console.log("Total before for loop: " + total);
+            for (var i = 0; i < arguments.length; i++) {
+                if (i === 0) { continue; }
+                total /= parseFloat(arguments[i]);
+                console.log("total in for loop. step " + i + " and value of total: " + total);
             }
-            total = total.substr(0, total.length - 1);
-            return Math.floor(eval(total));
+            console.log("Total after for loop: " + total);
+            return Math.floor(total);
+        }
+        else if (typeof arguments[0] === "object" && arguments[0] !== null) {
+            var total = parseInt(arguments[0][0], 10);
+            for (var i = 1; i < arguments[0].length; i++) {
+                total /= arguments[0][i];
+            }
+            return Math.floor(total);
         }
         else {
-            arguments[0] = arguments[0].toString();
-            do {
-                arguments[0] = arguments[0].replace(",","/");
-            } while (arguments[0].indexOf(",") > -1)
-                return Math.floor(eval(arguments[0]));
-        }        
+            showError("Please use valid strings or numbers for your input!");
+        }
     }
     catch (err) {
         showError(errorMsg + err);
@@ -455,7 +461,7 @@ Math.line = function () {
             arguments[1] = parseFloat(arguments[1]);
             arguments[2] = parseFloat(arguments[2]);
             arguments[3] = parseFloat(arguments[3]);
-            newline.slope = (arguments[3] - arguments[1])/(arguments[2] - arguments[0]);
+            newline.slope = round((arguments[3] - arguments[1])/(arguments[2] - arguments[0]), defPrec);
             newline.yint = arguments[1] - round((newline.slope * arguments[0]), defPrec);
             var yint = (newline.yint > 0) ? " + " + newline.yint : " - " + (-newline.yint);
             newline.equation = "y = " + newline.slope + "x" + yint;
