@@ -550,16 +550,15 @@ Math.logb = function (arg, base) {
 //Numbers can be given in a set of arguments or an array
 Math.mean = function () {
     var total = 0;
+    var len = arguments[0].length;
     try {
         if (typeof arguments[0] === "string" || typeof arguments[0] === "number") {
             for (var i in arguments) {
-                total += parseInt(arguments[i], 10);
+                total += parseFloat(arguments[i]);
             }
-            return round(total / arguments.length, defPrec);
+            return round(total / len, defPrec);
         }
         else {
-            var len = arguments[0].length;
-            var total = 0;
             for (var i in arguments[0]) {
                 total += parseFloat(arguments[0][i]);
             }
