@@ -80,7 +80,7 @@ function showError (msg) {
 //Math.acosh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the inverse hyperbolic cosine of a given number
-Math.acosh = function (arg) {
+Math.acosh = Math.acosh || function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg < 1) {
@@ -223,7 +223,7 @@ Math.area = function (shape) {
 //Math.asinh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the inverse hyperbolic sine of a given number
-Math.asinh = function (arg) {
+Math.asinh = Math.asinh || function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg === -Infinity){
@@ -241,7 +241,7 @@ Math.asinh = function (arg) {
 //Math.atanh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the inverse hyperbolic tangent of a given number
-Math.atanh = function (arg) {
+Math.atanh = Math.atanh || function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg < -1 || arg > 1){
@@ -260,7 +260,7 @@ Math.atanh = function (arg) {
 //Math.cbrt is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the cube root of a given integer
-Math.cbrt = function (arg) {
+Math.cbrt = Math.cbrt || function (arg) {
     try {
         arg = parseFloat(arg);
         var y = Math.pow(Math.abs(arg), 1/3);
@@ -275,7 +275,7 @@ Math.cbrt = function (arg) {
 //Math.clz32 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the number of leading zeroes of a 32-bit integer.
-Math.clz32 = function (arg) {
+Math.clz32 = Math.clz32 || function (arg) {
     try {
         var value = Number(arg) >>> 0;
         if (value) {
@@ -293,7 +293,7 @@ Math.clz32 = function (arg) {
 //Math.cosh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the hyperbolic cosine of a number.
-Math.cosh = function (arg) {
+Math.cosh = Math.cosh || function (arg) {
     try {
         arg = parseFloat(arg);
         var y = Math.exp(arg);
@@ -322,7 +322,7 @@ Math.csc = function (angle) {
 //Math.expm1 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns e^x - 1, where x is argument and e is Euler's constant
-Math.expm1 = function (arg) {
+Math.expm1 = Math.expm1 || function (arg) {
     try {
         arg = parseFloat(arg);
         return round(Math.exp(arg) - 1, defPrec);    
@@ -335,7 +335,7 @@ Math.expm1 = function (arg) {
 //Math.fround is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods that supports Float32Array prototype
 //Returns the nearest single precision float representation of a number.
-Math.fround = function (arg) {
+Math.fround = Math.fround || function (arg) {
     try {
         if (Float32Array) {
             return new Float32Array([arg])[0];
@@ -385,7 +385,7 @@ Math.fact = function (arg) {
 //Math.hypot is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the square root of the sum of squares of its arguments.
-Math.hypot = function () {
+Math.hypot = Math.hypot || function () {
     try {
         var y = 0;
         for (var i in arguments) {
@@ -405,7 +405,7 @@ Math.hypot = function () {
 //Math.imul is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the result of a 32-bit integer multiplication.
-Math.imul = function (a, b) {
+Math.imul = Math.imul || function (a, b) {
     try {
         var ah = (a >>> 16) & 0xffff;
         var al = a & 0xffff;
@@ -424,27 +424,21 @@ Math.imul = function (a, b) {
 //Returns the leading integer portion of a division of a set of two or more numbers
 Math.intdiv = function () {
     try {
-        if ((typeof arguments[0] === "string" || typeof arguments[0] === "number") && (arguments[0] !== NaN)) {
-            var total = parseFloat(arguments[0]);
-            console.log("Total before for loop: " + total);
-            for (var i = 0; i < arguments.length; i++) {
-                if (i === 0) { continue; }
-                total /= parseFloat(arguments[i]);
-                console.log("total in for loop. step " + i + " and value of total: " + total);
+        if (typeof arguments[0] === "string" || typeof arguments[0] === "number") {
+            var total = "";
+            for (var i in arguments) {
+                total += parseFloat(arguments[i]).toString() + "/";
             }
-            console.log("Total after for loop: " + total);
-            return Math.floor(total);
-        }
-        else if (typeof arguments[0] === "object" && arguments[0] !== null) {
-            var total = parseInt(arguments[0][0], 10);
-            for (var i = 1; i < arguments[0].length; i++) {
-                total /= arguments[0][i];
-            }
-            return Math.floor(total);
+            total = total.substr(0, total.length - 1);
+            return Math.floor(eval(total));
         }
         else {
-            showError("Please use valid strings or numbers for your input!");
-        }
+            arguments[0] = arguments[0].toString();
+            do {
+                arguments[0] = arguments[0].replace(",","/");
+            } while (arguments[0].indexOf(",") > -1)
+                return Math.floor(eval(arguments[0]));
+        }        
     }
     catch (err) {
         showError(errorMsg + err);
@@ -461,7 +455,7 @@ Math.line = function () {
             arguments[1] = parseFloat(arguments[1]);
             arguments[2] = parseFloat(arguments[2]);
             arguments[3] = parseFloat(arguments[3]);
-            newline.slope = round((arguments[3] - arguments[1])/(arguments[2] - arguments[0]), defPrec);
+            newline.slope = (arguments[3] - arguments[1])/(arguments[2] - arguments[0]);
             newline.yint = arguments[1] - round((newline.slope * arguments[0]), defPrec);
             var yint = (newline.yint > 0) ? " + " + newline.yint : " - " + (-newline.yint);
             newline.equation = "y = " + newline.slope + "x" + yint;
@@ -496,7 +490,7 @@ Math.line = function () {
 //Math.log10 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the base 10 logarithm of a given number
-Math.log10 = function (arg) {
+Math.log10 = Math.log10 || function (arg) {
     try {
         arg = parseFloat(arg);
         return round(Math.log(arg)/Math.log(10), defPrec);        
@@ -509,7 +503,7 @@ Math.log10 = function (arg) {
 //Math.log1p is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the natural logarithm (base e) of 1 + a number
-Math.log1p = function (arg) {
+Math.log1p = Math.log1p || function (arg) {
     try {
         arg = parseFloat(arg);
         return round(Math.log(1 + arg), defPrec);
@@ -522,7 +516,7 @@ Math.log1p = function (arg) {
 //Math.log2 is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the logarithm base 2 of a number
-Math.log2 = function (arg) {
+Math.log2 = Math.log2 || function (arg) {
     try {
         arg = parseFloat(arg);
         return round(Math.log(arg)/Math.log(2), defPrec);    
@@ -550,17 +544,16 @@ Math.logb = function (arg, base) {
 //Numbers can be given in a set of arguments or an array
 Math.mean = function () {
     var total = 0;
-    var len;
     try {
         if (typeof arguments[0] === "string" || typeof arguments[0] === "number") {
-            len = arguments.length;
             for (var i in arguments) {
-                total += parseFloat(arguments[i]);
+                total += parseInt(arguments[i], 10);
             }
-            return round(total / len, defPrec);
+            return round(total / arguments.length, defPrec);
         }
         else {
-            len = arguments[0].length;
+            var len = arguments[0].length;
+            var total = 0;
             for (var i in arguments[0]) {
                 total += parseFloat(arguments[0][i]);
             }
@@ -700,7 +693,7 @@ Math.randomr = function (min, max) {
 //Math.sign is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns 1 for a positive number, -1 for a negative number, and 0 for zero.
-Math.sign = function (arg) {
+Math.sign = Math.sign || function (arg) {
     try {
         if (arg > 0) {
             return 1;
@@ -720,7 +713,7 @@ Math.sign = function (arg) {
 //Math.sinh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the hyperbolic sine of a number.
-Math.sinh = function (arg) {
+Math.sinh = Math.sinh || function (arg) {
     try {
         arg = parseFloat(arg);
         return round((Math.exp(arg) - Math.exp((-arg))) / 2, defPrec);
@@ -741,7 +734,7 @@ Math.sec = function (angle) {
 //Math.tanh is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the hyperbolic tangent of a number.
-Math.tanh = function (arg) {
+Math.tanh = Math.tanh || function (arg) {
     try {
         
         if (arg === Infinity) {
@@ -764,7 +757,7 @@ Math.tanh = function (arg) {
 //Math.trunc is an experimental function that isn't available in all browsers yet
 //This will you allow to access it from any browser that supports standard Math properties/methods
 //Returns the integral part of the number x, removing any fractional digits.
-Math.trunc = function (arg) {
+Math.trunc = Math.trunc || function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg < 0) {
