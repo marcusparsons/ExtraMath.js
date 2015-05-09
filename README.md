@@ -1,5 +1,5 @@
 # ExtraMath.js
-Normalizes access of experimental JavaScript Math methods across all browsers that support the current Math methods, adds several new Math functions, and does not require any dependencies.
+Normalizes access of experimental JavaScript Math methods that are being introduced in the upcoming ECMAScript 6 release across all browsers that support the current Math methods, adds several new Math functions, and does not require any dependencies.
 
 ##About ExtraMath.js
 ExtraMath.js introduces 11 new functions to the JavaScript Math prototype: **area**, **fact**, **intdiv**, **line**, **logb**, **mean**, **nck**, **nroot**, **perimeter**, **randomr**, and **volume**.  No experimental Math methods are overwritten by this library.  Each experimental math method utilizes a polyfill function that will use the Math function if it is available, and if not, uses the function included in ExtraMath.js.
@@ -18,7 +18,7 @@ In order to use ExtraMath, all you need to do is call the "extramath.min.js" scr
 ```
 
 ##Error Checking
-Each function has error handling built-in that calls the function `showError`.  This way if you want to customize how errors are displayed, you only need to do so at one location, instead of having to search throughout the document to change each and every display function.
+Each function has error handling built-in that calls the function `showError`.  Experimental functions, from the ECMAScript 6 spec, only access `showError` if the function is not currently available in the browser.   This way if you want to customize how errors are displayed, you only need to do so at one location, instead of having to search throughout the document to change each and every display function.
 
 ##Extra Functions Added
 
