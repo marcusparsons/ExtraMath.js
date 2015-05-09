@@ -448,4 +448,4 @@ ExtraMath.js is licensed under the [GNU GPL v3 license](http://www.gnu.org/licen
 ***
 
 ##Copyright
-Copyright 2015, [Marcus Parsons](http://www.marcusparsons.com)
+Copyright 2015, [Marcus Parsons](http://www.marcusparsons.com) 
