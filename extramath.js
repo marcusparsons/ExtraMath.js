@@ -69,12 +69,18 @@ f = Math.floor(value);
 return (isHalf ? value : Math.round(value)) / m;
 } 
 
-//Customize this function how you wish.
-//By default, it will show an alert box
+//for evaluation of strings of data
+//safer than using eval()
+function evaluate (str) {
+    return new Function('return ' + str)();
+}
 
+//this is the error message to be seen along with the JS error
 var errorMsg = "Error: Unable to process expression due to ";
+//Customize this function how you wish.
+//By default, it will throw a new error
 function showError (msg) {
-    alert(msg);
+    throw new Error(msg);
 }
 
 //Math.acosh is an experimental function that isn't available in all browsers yet
@@ -88,11 +94,11 @@ Math.acosh = Math.acosh || function (arg) {
             return 0;
         }
         else {
-                return round(Math.log(arg + Math.sqrt(arg * arg - 1)), defPrec);
+            return round(Math.log(arg + Math.sqrt(arg * arg - 1)), defPrec);
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
 
@@ -104,7 +110,7 @@ Math.area = function (shape) {
         if (typeof arguments[1] === "string" || typeof arguments[1] === "number") {
             for (var i in arguments) {
                 if (i === 0){ continue; }
-               args[i-1] = parseFloat(arguments[i]); 
+                args[i-1] = parseFloat(arguments[i]); 
             }
         }
         else {
@@ -211,12 +217,12 @@ Math.area = function (shape) {
                 return round(0.5 * b * h, defPrec);
                 break;
             default: 
-                showError("You must choose a shape in order to calculate its area. You may enter the full name of the shape or the first three letters.");
+               showError("You must choose a shape in order to calculate its area. You may enter the full name of the shape or the first three letters.");
                 break;
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
 
@@ -234,7 +240,7 @@ Math.asinh = Math.asinh || function (arg) {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
 
@@ -245,7 +251,7 @@ Math.atanh = Math.atanh || function (arg) {
     try {
         arg = parseFloat(arg);
         if (arg < -1 || arg > 1){
-            showError("Error: atanh only accepts numbers between 1 and -1, exclusive.");
+           showError("Error: atanh only accepts numbers between 1 and -1, exclusive.");
             return 0;
         }
         else {
@@ -253,7 +259,7 @@ Math.atanh = Math.atanh || function (arg) {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
 
@@ -268,7 +274,7 @@ Math.cbrt = Math.cbrt || function (arg) {
         return round(y, defPrec);
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }  
 }
 
@@ -286,7 +292,7 @@ Math.clz32 = Math.clz32 || function (arg) {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }      
 }
 
@@ -300,7 +306,7 @@ Math.cosh = Math.cosh || function (arg) {
         return round((y + 1 / y) / 2, defPrec);
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }  
 }
 
@@ -328,7 +334,7 @@ Math.expm1 = Math.expm1 || function (arg) {
         return round(Math.exp(arg) - 1, defPrec);    
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }      
 }
 
@@ -342,11 +348,11 @@ Math.fround = Math.fround || function (arg) {
         }
         else {
             showError("fround cannot execute because Float32Array not supported.");
-            return 0;
+            return false;
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     } 
 }
 
@@ -365,19 +371,19 @@ Math.fact = function (arg) {
             do {
                 args = args.replace(",","");
             } while (args.indexOf(",") > -1)
-
-            return round(args, 64);
+            console.log(args);
+            return round(evaluate(args), 64);
         }
         else if (arg === 0) {
             return "1";
         }
         else {
-            showError("Factorials can only be done on positive numbers!");
+           showError("Factorials can only be done on positive numbers!");
             return 0;
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }
 }
 
@@ -398,7 +404,7 @@ Math.hypot = Math.hypot || function () {
         return round(Math.sqrt(y), defPrec);
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }     
 }
 
@@ -416,7 +422,7 @@ Math.imul = Math.imul || function (a, b) {
         return ((al * bl) + (((ah * bl + al * bh) << 16) >>> 0)|0);
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
 
@@ -430,18 +436,18 @@ Math.intdiv = function () {
                 total += parseFloat(arguments[i]).toString() + "/";
             }
             total = total.substr(0, total.length - 1);
-            return Math.floor(eval(total));
+            return Math.floor(evaluate(total));
         }
         else {
             arguments[0] = arguments[0].toString();
             do {
                 arguments[0] = arguments[0].replace(",","/");
             } while (arguments[0].indexOf(",") > -1)
-                return Math.floor(eval(arguments[0]));
+                return Math.floor(evaluate(arguments[0]));
         }        
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }      
 }
 
@@ -463,7 +469,7 @@ Math.line = function () {
         }
         else {
             if (arguments[0].length > 4) {
-                showError("You may only use two sets of points with the line function!");
+               showError("You may only use two sets of points with the line function!");
                 return 0;
             }
             else {
@@ -483,7 +489,7 @@ Math.line = function () {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }          
 }
 
@@ -496,7 +502,7 @@ Math.log10 = Math.log10 || function (arg) {
         return round(Math.log(arg)/Math.log(10), defPrec);        
     } 
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }
 }
 
@@ -509,7 +515,7 @@ Math.log1p = Math.log1p || function (arg) {
         return round(Math.log(1 + arg), defPrec);
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
 
@@ -522,7 +528,7 @@ Math.log2 = Math.log2 || function (arg) {
         return round(Math.log(arg)/Math.log(2), defPrec);    
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }
 }
 
@@ -535,7 +541,7 @@ Math.logb = function (arg, base) {
         return round(Math.log(arg)/Math.log(base), defPrec);    
     } 
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }
 }
 
@@ -561,7 +567,7 @@ Math.mean = function () {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
 
@@ -575,11 +581,11 @@ Math.nck = function (n, k)  {
             return round(Math.fact(n)/(Math.fact(n-k) * Math.fact(k)), defPrec);
         }
         else {
-            showError("When using nck, n and k must both be greater than zero!");
+           showError("When using nck, n and k must both be greater than zero!");
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }     
 }
 
@@ -590,7 +596,7 @@ Math.nroot = function (arg, root) {
         arg = parseFloat(arg);
         root = parseInt(root, 10);
         if (root % 2 === 0 && arg < 0) {
-            showError("Even roots require a positive number!");
+           showError("Even roots require a positive number!");
             return 0;
         } 
         else {
@@ -600,7 +606,7 @@ Math.nroot = function (arg, root) {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }  
 }
 
@@ -666,12 +672,12 @@ Math.perimeter = function (shape) {
                 return round(a + b + c, defPrec);                 
                 break; 
             default: 
-                showError("You must choose a shape in order to calculate its perimeter. You may enter the full name of the shape or the first three letters.");
+               showError("You must choose a shape in order to calculate its perimeter. You may enter the full name of the shape or the first three letters.");
                 break;
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     } 
 }
 
@@ -686,7 +692,7 @@ Math.randomr = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
 
@@ -706,7 +712,7 @@ Math.sign = Math.sign || function (arg) {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }
 }
 
@@ -719,7 +725,7 @@ Math.sinh = Math.sinh || function (arg) {
         return round((Math.exp(arg) - Math.exp((-arg))) / 2, defPrec);
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }
 }
 
@@ -749,7 +755,7 @@ Math.tanh = Math.tanh || function (arg) {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }
 }
 
@@ -768,7 +774,7 @@ Math.trunc = Math.trunc || function (arg) {
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }
 }
 
@@ -840,11 +846,11 @@ Math.volume = function (shape) {
                 return round((4/3) * Math.PI * Math.pow(r, 3), defPrec); 
                 break;
             default: 
-                showError("You must choose a shape in order to calculate its volume. You may enter the full name of the shape or the first three letters.");
+               showError("You must choose a shape in order to calculate its volume. You may enter the full name of the shape or the first three letters.");
                 break;                
         }
     }
     catch (err) {
-        showError(errorMsg + err);
+       showError(errorMsg + err);
     }    
 }
